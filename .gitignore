@@ -1,1 +1,3 @@
 cms/
+.cache/
+.DS_Store
