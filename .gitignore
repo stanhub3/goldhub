@@ -13,4 +13,5 @@ lambda/
 !.env.example
 !.env.local
 !.env.production
+/public/
 
