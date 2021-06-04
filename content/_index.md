@@ -84,7 +84,7 @@ sections:
         description: "In the business world, everyone is paid in two coins: cash and
           experience. Take the experience first; the cash will come later."
 date: 2019-05-15
-title: Thriftshop
-description: The Most Affordable Ecommerce Solution in the Philippines
+title: Pitlords Live
+description: #1 Live Streaming Provider For Live Betting Games
 showcart: true
 ---

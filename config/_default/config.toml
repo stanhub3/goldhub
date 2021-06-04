@@ -1,17 +1,37 @@
 enableEmoji = true
 enableRobotsTXT = true
-title = "Pitlord INC."
+title = "#1 Online Platform For Live Streaming Betting Games"
 baseURL = "https://pitlords.com"
+googleAnalytics = ""
 disqusShortname = "pitlords"
 paginate = 9
 languageCode = "en-us"
-googleAnalytics = ""
 summaryLength = "10"
 
 [permalinks]
 blogs = "/blog/:slug/"
 products = "/products/:slug/"
 pages = "/:slug"
+
+[privacy]
+
+[privacy.disqus]
+disable = true
+
+[privacy.googleAnalytics]
+disable = true
+
+[privacy.instagram]
+disable = true
+
+[privacy.twitter]
+disable = true
+
+[privacy.vimeo]
+disable = true
+
+[privacy.youtube]
+disable = true
 
 [author]
 homepage = "https://github.com/goldcoders"
