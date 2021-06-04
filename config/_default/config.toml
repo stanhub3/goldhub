@@ -2,10 +2,10 @@ enableEmoji = true
 enableRobotsTXT = true
 title = "Pitlord INC."
 baseURL = "https://pitlords.com"
-googleAnalytics = ""
-disqusShortname = ""
+disqusShortname = "pitlords"
 paginate = 9
 languageCode = "en-us"
+googleAnalytics = ""
 summaryLength = "10"
 
 [permalinks]
