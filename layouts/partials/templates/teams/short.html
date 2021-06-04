@@ -1,0 +1,69 @@
+{{- $name_text := "" -}}
+{{- with .name_text.color -}}
+{{- $name_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .name_text.shade}}
+{{- $name_text = (printf "%v%v%v" $name_text "-" .) -}}
+{{- end -}}
+
+{{- $title_text := "" -}}
+{{- with .title_text.color -}}
+{{- $title_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .title_text.shade}}
+{{- $title_text = (printf "%v%v%v" $title_text "-" .) -}}
+{{- end -}}
+
+{{- $role_text := "" -}}
+{{- with .role_text.color -}}
+{{- $role_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{- with .role_text.shade -}}
+{{- $role_text = (printf "%v%v%v" $role_text "-" .) -}}
+{{- end -}}
+
+
+{{$teams := .members}}
+
+<div class="bg-white">
+    <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+      <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
+        <div class="space-y-5 sm:space-y-4">
+          <h2 class="text-3xl font-extrabold {{$title_text}} tracking-tight sm:text-4xl">{{.title}}</h2>
+          <p class="text-xl text-gray-500">{{.subtitle}}</p>
+        </div>
+        <div class="lg:col-span-2">
+          <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
+            {{ range $index,$team := $teams }}
+            <li>
+              <div class="space-y-4">
+                <div class="aspect-w-3 aspect-h-2">
+                  <img class="object-cover shadow-lg rounded-lg" src="{{$team.image.url|relURL}}" alt="">
+                </div>
+                <div class="text-lg leading-6 font-medium space-y-1">
+                  <h3 class="{{$name_text}}">{{$team.name}}</h3>
+                  <p class="{{$role_text}}">{{$team.role.name}}</p>
+                </div>
+                <div class="text-lg">
+                  <p class="text-gray-500">{{$team.description}}</p>
+                </div>
+  
+                <ul class="flex space-x-5">
+                  {{- range $team.links -}}
+                  <li>
+                    <a href="{{.link}}" class="text-gray-400 hover:text-gray-500">
+                      <span class="sr-only">{{upper .type }}</span>
+                      <img class="h-6 w-6" src="{{.icon|relURL}}">
+                    </a>
+                  </li>
+                  {{- end -}}
+                </ul>
+              </div>
+            </li>
+            {{end}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
