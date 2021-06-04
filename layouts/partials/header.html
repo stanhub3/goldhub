@@ -16,8 +16,10 @@
               <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 mb-15 ml-2 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
               {{ else if eq $.Site.Params.brand.font.name "qwigley"}}
               <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 -mr-10 mt-2 text-base">{{$.Site.Params.brand.tag}}</span>
+              {{else if eq $.Site.Params.brand.font.name "sans"}}
+              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
               {{else}}
-              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0  -ml-1 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
+              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0 mx-2">{{$.Site.Params.brand.tag}}</span>
               {{- end -}}
           </h1>
           {{end}}
@@ -64,7 +66,7 @@
       </div>
       {{- end -}}
         {{/* <!-- Shopping Cart Menu --> */}}
-      {{- if $.Page.Params.showcart -}}
+      {{ if or (eq $.Site.Data.cart.enable "true") (eq $.Page.Params.showcart "true")}}
       {{ with .Site.Data.cart }}
       <button x-cloak @click="cartOpen = !cartOpen" x-show="!cartOpen" class="text-sm border-transparent focus:outline-none transition duration-150 ease-in-out" id="cart-menu" aria-label="Cart menu" aria-haspopup="true">
       <div slot="icon" class="relative">

@@ -20,14 +20,13 @@
     {{- end -}}
 {{- end -}}
 <body class="min-h-screen bg-light text-default" 
-x-data="{...xdata(){{if $.Page.Params.showcart}},...shopcart(){{end}}{{if $.Params.showsearch}},...searchData(){{end}}{{if $.Params.showcontact}},...contact(){{end}}{{if $showModal}},...videoModals(){{end}}}"
-x-init="{{if $.Page.Params.showcart}}cartInit();{{end}}{{if $.Page.Params.showsearch}}getSearchables();{{end}}"
+x-data="{...xdata(){{ if or (eq $.Site.Data.cart.enable `true`) (eq $.Page.Params.showcart `true`)}},...shopcart(){{end}}{{if $.Params.showsearch}},...searchData(){{end}}{{if $.Params.showcontact}},...contact(){{end}}{{if $showModal}},...videoModals(){{end}}}"
+x-init="{{ if or (eq $.Site.Data.cart.enable `true`) (eq $.Page.Params.showcart `true`)}}cartInit();{{end}}{{if $.Page.Params.showsearch}}getSearchables();{{end}}"
 >
     {{- partial "dev-size-indicator.html" . -}}
     {{- partial "header.html" . -}}
     {{- block "main" . }}{{- end -}}
     {{- if $.Page.Params.showcart}}{{- partial "fab-cart.html" . -}}{{- end -}}
-    {{- partial "add-to-cart-notification.html" . -}}
     {{- partial "footer.html" . -}}
     {{- block "scripts" . }}{{- end -}}
     {{- if $showModal -}}

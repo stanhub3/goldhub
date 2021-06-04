@@ -1,3 +1,4 @@
+{{ if or (eq $.Site.Data.cart.enable "true") (eq $.Page.Params.showcart "true")}}
 {{ with .Site.Data.cart }}
 <div
   x-cloak
@@ -170,4 +171,5 @@
     </div>
   </div>
 </div>
+{{end}}
 {{end}}

@@ -1,6 +1,6 @@
 <script>
     {{/* Set Local Storage for Cart and Paymongo */}}
-    {{- if $.Page.Params.showcart -}}
+    {{ if or (eq $.Site.Data.cart.enable "true") (eq $.Page.Params.showcart "true")}}
     var cart = store.namespace("cart");
     var paymongo = store.namespace("paymongo");
     {{/* Initialize Cart */}}
@@ -231,7 +231,8 @@
     }// end contanct
     {{ end }}
     {{/* Init Shop Cart Data */}}
-{{- if $.Page.Params.showcart -}}
+{{ if or (eq $.Site.Data.cart.enable "true") (eq $.Page.Params.showcart "true")}}
+
 
 {{- $featured_image := $.Page.Params.featured_image|relURL -}}
 {{- $sharelink := $.Permalink -}}
@@ -341,6 +342,7 @@ var current_product = window.product_details = {
 };
 {{end}}
 
+{{ if or (eq $.Site.Data.cart.enable "true") (eq $.Page.Params.showcart "true")}}
 function shopcart(){
     return {
         cartNotify: false,
@@ -609,6 +611,7 @@ function shopcart(){
         }
         {{end -}}
     }
+    {{end}}
 }
     {{ end }}
 </script>
