@@ -1,0 +1,6 @@
+tax_rate: 0.1
+title: "Shopping Cart"
+shipping_fee: 30000
+empty_cart_img: "/images/start-shopping.svg"
+empty_cart_error_msg: "Whoops!"
+empty_cart_label: "Cart is Empty"

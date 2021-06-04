@@ -1,0 +1,6 @@
+fonts:
+  # Define Inside tailwind.config.js
+  - name: aguafina
+  - name: steel
+  - name: qwigley
+  - name: sans
