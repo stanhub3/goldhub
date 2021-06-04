@@ -1,0 +1,38 @@
+
+
+[goldmark]
+
+[goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+
+[goldmark.parser]
+attribute = true
+autoHeadingID = true
+autoHeadingIDType = "github"
+
+[goldmark.renderer]
+hardWraps = false
+unsafe = true
+xhtml = false
+
+[highlight]
+codeFences = true
+guessSyntax = true
+hl_Lines = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "monokailight"
+tabWidth = 4
+
+[tableOfContents]
+endLevel = 3
+ordered = false
+startLevel = 2

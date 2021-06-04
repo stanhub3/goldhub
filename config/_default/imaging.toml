@@ -1,0 +1,9 @@
+resampleFilter = "box"
+quality = 75
+anchor = "smart"
+bgColor = "#ffffff"
+[exif]
+includeFields = ""
+excludeFields = ""
+disableDate = false
+disableLatLong = false

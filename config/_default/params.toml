@@ -1,0 +1,37 @@
+github_user = "goldcoders"
+mainSections = ["blog", "products"]
+copyright = "Copyright © 2020, Thriftshop Site, all rights reserved."
+github_banner = true
+github_repo = "https://github.com/thrift-shop-site/theme"
+favicon = "/images/logo.png"
+description = "The Most Affordable Ecommerce Site For Filipino Online Seller Startups"
+
+[gtm]
+enable = false
+id = ""
+
+[crispchat]
+id = ""
+enable = false
+
+[logo]
+image = "/images/logo.png"
+height = "14"
+
+[brand]
+enable = true
+name = "Thriftshop"
+tag = "SITE"
+
+[brand.font]
+name = "aguafina"
+tag = "steel"
+
+[cover_photo]
+color = "white"
+shade = ""
+font = "aguafina"
+
+[placeholder]
+cover_photo = "https://cdn.pixabay.com/photo/2015/03/26/09/40/business-suit-690048_960_720.jpg"
+post = "https://via.placeholder.com/760x450"

@@ -1,0 +1,49 @@
+[[main]]
+URL = "/"
+name = "Home"
+weight = 1
+
+[[main]]
+URL = "/products/"
+name = "Products"
+weight = 2
+
+[[main]]
+URL = "/blog/"
+name = "Blog"
+weight = 3
+
+[[main]]
+URL = "/faq/"
+name = "FAQs"
+weight = 4
+
+[[main]]
+URL = "/contact/"
+name = "Support"
+weight = 5
+
+[[footer]]
+URL = "/legalities/"
+name = "Legalities"
+weight = 7
+
+[[footer]]
+URL = "/disclaimer/"
+name = "Disclaimer"
+weight = 5
+
+[[footer]]
+URL = "/cookies/"
+name = "Cookie Policy"
+weight = 4
+
+[[footer]]
+URL = "/privacy/"
+name = "Privacy Policy"
+weight = 3
+
+[[footer]]
+URL = "/tos/"
+name = "Terms & Conditions"
+weight = 2

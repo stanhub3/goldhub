@@ -1,0 +1,19 @@
+enableEmoji = true
+enableRobotsTXT = true
+disqusShortname = ""
+languageCode = "en-us"
+title = "Thriftshop Site"
+baseURL = "http://localhost"
+googleAnalytics = ""
+paginate = 9
+summaryLength = "10"
+
+[permalinks]
+blogs = "/blog/:slug/"
+products = "/products/:slug/"
+pages = "/:slug"
+
+[author]
+homepage = "https://github.com/goldcoders"
+name = "Goldcoders"
+avatar = "https://avatars.dicebear.com/api/avataaars/richkid.svg"

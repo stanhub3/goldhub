@@ -1,0 +1,9 @@
+threshold = 75.0
+includeNewer = true
+toLower = false
+[[indices]]
+name = "tags"
+weight = 80.0
+[[indices]]
+name = "categories"
+weight = 30.0
