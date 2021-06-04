@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{- partial "head.html" . -}}
+{{/* <!-- Initialize X-data on AlpineJS --> */}}
+{{/* <!-- Add shopcart() and cartInit() Conditionally --> */}}
+{{- $showModal := false -}}
+{{- if .IsHome -}}
+{{- $sections := $.Page.Params.sections -}}
+{{- $sc := len $sections -}}
+{{ $videos := slice }}
+    {{- if gt $sc 0 -}}
+        {{- range $key,$value := $sections -}}
+            {{- if .video.id -}}
+                {{$videos = $videos | append (dict "id" .video.id)}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+    {{- if gt (len $videos) 0 -}}
+    {{- $showModal = true -}}
+    {{- end -}}
+{{- end -}}
+<body class="min-h-screen bg-light text-default" 
+x-data="{...xdata(){{if $.Page.Params.showcart}},...shopcart(){{end}}{{if $.Params.showsearch}},...searchData(){{end}}{{if $.Params.showcontact}},...contact(){{end}}{{if $showModal}},...videoModals(){{end}}}"
+x-init="{{if $.Page.Params.showcart}}cartInit();{{end}}{{if $.Page.Params.showsearch}}getSearchables();{{end}}"
+>
+    {{- partial "dev-size-indicator.html" . -}}
+    {{- partial "header.html" . -}}
+    {{- block "main" . }}{{- end -}}
+    {{- if $.Page.Params.showcart}}{{- partial "fab-cart.html" . -}}{{- end -}}
+    {{- partial "add-to-cart-notification.html" . -}}
+    {{- partial "footer.html" . -}}
+    {{- block "scripts" . }}{{- end -}}
+    {{- if $showModal -}}
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+    {{- end -}}
+    {{- partial "xdata.html" . -}}
+    {{- partial "g-tag.html" . -}}
+    {{- partial "chat-plugins.html" . -}}
+</body>
+</html>

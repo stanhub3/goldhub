@@ -1,0 +1,114 @@
+{{- $form := $.Page.Params.form -}}
+<div class="mt-12">
+  <form
+    x-on:submit.prevent="submit"
+    class="grid grid-cols-1 row-gap-6 sm:grid-cols-2 sm:col-gap-8"
+    >
+   {{- range $field := $form.fields -}}
+    <div class="sm:col-span-2">
+      <label
+        for="{{.name|urlize}}"
+        class="block text-sm font-medium leading-5 text-brand"
+        >{{.label}}</label
+      >
+      <div class="mt-1 relative rounded-md shadow-sm">
+        {{if eq .tag "input" }}
+        <input
+          x-model="form.{{.value}}"
+          class="appearance-none border-2 border-transparent outline-none focus:border-primary shadow-outline-primary shadow-outline-none rounded w-full py-2 px-4 leading-tight"
+          id="{{.value|urlize  }}"
+          name="{{.name }}"
+          type="{{.type}}"
+          {{if .validation.required}}required{{end}}
+          {{ with .validation.pattern }}pattern="{{.}}"{{end}}
+          {{ with .validation.min }}min="{{.}}"{{end}}
+          {{ with .validation.max }}max="{{.}}"{{end}}
+          {{ with .validation.step }}step="{{.}}"{{end}}
+          {{ with .validation.size }}size="{{.}}"{{end}}
+          {{ with .validation.minLength }}minLength="{{.}}"{{end}}
+          {{ with .validation.maxLength }}maxLength="{{.}}"{{end}}
+          {{ with .validation.title }}title="{{.}}"{{end}}
+          placeholder="{{.placeholder}}"
+        />
+        {{else}}
+        <div class="mt-1 relative rounded-md">
+        {{ print "<" .tag | safeHTML }}
+          x-model="form.{{.value}}"
+          class="appearance-none border-2 border-transparent outline-none focus:border-primary shadow-outline-primary shadow-outline-none rounded w-full py-3 px-4 leading-tight"
+          id="{{.value|urlize}}"
+          rows="4"
+          name="{{.name}}"
+          {{if .validation.required}}required{{end}}
+          {{ with .validation.pattern }}pattern="{{.}}"{{end}}
+          {{ with .validation.min }}min="{{.}}"{{end}}
+          {{ with .validation.max }}max="{{.}}"{{end}}
+          {{ with .validation.step }}step="{{.}}"{{end}}
+          {{ with .validation.size }}size="{{.}}"{{end}}
+          {{ with .validation.minLength }}minLength="{{.}}"{{end}}
+          {{ with .validation.maxLength }}maxLength="{{.}}"{{end}}
+          {{ with .validation.title }}title="{{.}}"{{end}}
+          placeholder="{{ .placeholder}}"
+        >{{- print "</" .tag ">" |safeHTML -}}
+        </div>
+        {{end}}
+      </div>
+    </div>
+    {{- end -}}
+    {{- if $form.agreement.enable -}}
+    <div class="sm:col-span-2">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <span
+            role="checkbox"
+            @click="contact_agree = !contact_agree"
+            tabindex="0"
+            aria-checked="false"
+            :class="{'bg-light}}': !contact_agree, 'bg-primary': contact_agree}"
+            class="relative inline-flex flex-shrink-0 h-6 w-11 border-2  outline-none border-primary rounded-full cursor-pointer transition-colors ease-in-out duration-200"
+          >
+            <span
+              aria-hidden="true"
+              :class="{'translate-x-0 bg-primary': !contact_agree,'translate-x-5 bg-light': contact_agree}"
+              class="translate-x-0 inline-block h-5 w-5 rounded-full shadow transform transition ease-in-out duration-200"
+            ></span>
+          </span>
+        </div>
+        <div class="ml-3">
+          <p class="text-base leading-6 text-gray-500">
+            {{- $form.agreement.text -}}
+            {{- $count := 1 -}}
+            {{- range $form.agreement.links -}}
+            {{ $count = add $count 1  }}
+            <a
+              href="{{.link}}"
+              class="font-medium text-primary-darker"
+              >{{- .name -}}
+            </a>
+            {{- if eq (len $form.agreement.links) $count -}}
+            {{- print "and" -}} 
+            {{- else if gt (len $form.agreement.links) $count -}}
+            {{- print "," -}}
+            {{- else -}}
+            {{- print "." -}}
+            {{- end -}}
+            {{- end -}}
+          </p>
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+    <div class="sm:col-span-2">
+     {{- if $form.recaptcha.enable -}}
+        <div  class="g-recaptcha w-full inline-flex" data-sitekey="{{ $form.recaptcha.siteKey }}" data-callback="onSuccess" data-expired-callback="onExpired" data-error-callback="onError"></div>
+     {{- end -}}
+      <span class="w-full inline-flex rounded-md shadow-sm">
+        <button
+          type="submit"
+          class="focus:outline-none bg-brand text-light w-full inline-flex items-center justify-center px-6 py-3 text-base leading-6 font-bold rounded-md transition ease-in-out duration-150"
+        >
+          {{- $form.button.text -}}
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

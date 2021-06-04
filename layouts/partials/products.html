@@ -1,0 +1,48 @@
+<div class="grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+    {{- $paginator := .Paginate (where .Pages "Type" "products") -}}
+    {{- range $paginator.Pages -}}
+    <div class="flex flex-col rounded-lg shadow-2xl overflow-hidden">
+        <div class="w-full mx-auto bg-light shadow-2xl rounded-xl overflow-hidden">
+        <div class="px-4 py-2">
+            <h1 class="text-primary font-extrabold text-center text-lg uppercase">{{.Title}}</h1>
+        </div>
+        <img class="h-96 w-full object-cover" src="{{if .Params.featured_image}}{{.Params.featured_image|relURL}}{{else}}{{.Site.Params.placeholder.post|relURL}}{{end}}" alt="{{.Title}}">
+        <div class="flex items-center justify-between px-4 py-2">
+             {{with .Params.price_before}}
+            <h1 class="text-primary-darker font-bold text-lg">
+               Before: <span class="line-through text-accent">₱{{.}}</span>
+            </h1>
+            {{end}}
+            <h1 class="text-primary-darker font-bold text-lg">
+                Now: {{with .Params.price}}₱{{.}}{{end}}
+            </h1>
+        </div>
+            <a href="{{- .Permalink -}}">
+            <button class="w-full font-extrabold focus:outline-none px-2 py-2 bg-gray-200 text-xs text-brand  uppercase hover:bg-brand hover:text-tag focus:text-tag focus:bg-brand">View Item</button>
+            </a>
+            {{/* We need to update this $product to included additional parameters 
+                we need to filter the default option 
+                prices
+                price_before
+                image
+                option name
+
+                options 
+                images
+
+                if images is click check if their is option === image
+
+                add an event on click on an specific option
+                this will change the image 
+                change the price 
+                each card needs to have their own x-data
+                to make this happen on this page...
+                WE NEED TO MAKE A MODAL THAT PASSES DOWN window.product_details
+
+            {{- $product := dict "id" .Params.product_id "name" .Title "image" (.Params.featured_image|relURL) "price" .Params.price "qty" 1 "slug" .Params.slug -}}
+            <button @click="addToCart({{- $product | jsonify -}})" class="focus:outline-none px-2 py-1 bg-gray-200 text-xs text-brand font-semibold rounded uppercase hover:bg-brand hover:text-tag focus:text-tag focus:bg-brand">Add to cart</button>
+            */}}
+    </div>
+    </div>
+    {{- end -}}
+</div>

@@ -1,0 +1,15 @@
+{{ if .Site.IsServer }}
+{{ if and (eq $.Site.Params.crispchat.enable true) $.Site.Params.crispchat.id -}}
+<div class="flex items-center justify-center fixed bottom-0 right-0 mb-12 mr-10 z-50  w-12 h-12 rounded-full text-gray-700 text-sm uppercase bg-green-400">
+    <span class="block px-1">CHAT</span>
+</div>
+{{end}}
+{{else}}
+{{/* We Need to Show This Only When We Are Running On Production */}}
+{{ if and (eq $.Site.Params.crispchat.enable true) $.Site.Params.crispchat.id -}}
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="{{$.Site.Params.crispchat.id}}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+{{- end -}}
+{{/* Add More Chat Plugins Below */}}
+
+{{ end }}
+

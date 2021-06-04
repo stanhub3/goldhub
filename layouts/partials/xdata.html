@@ -1,0 +1,614 @@
+<script>
+    {{/* Set Local Storage for Cart and Paymongo */}}
+    {{- if $.Page.Params.showcart -}}
+    var cart = store.namespace("cart");
+    var paymongo = store.namespace("paymongo");
+    {{/* Initialize Cart */}}
+    function cartInit() {
+      if (!store.has("cart.items")) {
+        cart("items", []);
+      }
+      if (!store.has("cart.tax")) {
+        cart("tax", parseFloat("{{.Site.Data.cart.tax_rate}}"));
+      }else if(store.has("cart.tax") && cart("tax") !== parseFloat("{{.Site.Data.cart.tax_rate}}")){
+        cart("tax", parseFloat("{{.Site.Data.cart.tax_rate}}"));
+      }
+      if (!store.has("cart.shipping_fee")) {
+        cart("shipping_fee", parseInt("{{ .Site.Data.cart.shipping_fee }}"));
+      }else if(store.has("cart.shipping_fee") && cart("shipping_fee") !== parseFloat("{{ .Site.Data.cart.shipping_fee }}")){
+        cart("shipping_fee", parseFloat("{{.Site.Data.cart.shipping_fee}}"));
+      }
+      {{/* TODO: Create A Custom Checkout */}}
+      if (!store.has("paymongo.reference_no")) {
+        paymongo("reference_no", null);
+      }
+    }
+    {{- end -}}
+    {{/* Search Functionality */}}
+    {{ if $.Page.Params.showsearch }}
+    function searchData() {
+      return {
+        fuse: null,
+        searchQuery: '',
+        searchResults: [],
+        showResult: false,
+        options: {
+        shouldSort: true,
+        includeMatches: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 200,
+        maxPatternLength: 32,
+        minMatchCharLength: 4,
+        keys: [
+            { name: "title", weight: 0.3 },
+            { name: "description", weight: 0.2 },
+            { name: "summary", weight: 0.2 },
+        ]
+        },
+        summaryInclude: 60,
+        getSearchables(){
+            let self = this;
+                fetch('/index.json')
+                .then(response => response.json())
+                .then(data => {
+                    self.fuse =  new Fuse(data, self.options);
+                });
+        },
+        executeSearch(){
+            let self = this;
+            if(self.searchQuery){
+                let results = self.fuse.search(self.searchQuery);
+                if (results.length > 0) {
+                    this.filteredPost(results);
+                }
+            }else{
+                self.searchResults = [];
+            }
+        },
+        filteredPost(fuseResults){
+            let self = this;
+            let results = [];
+            let allowed = ["title"];
+            Object.values(fuseResults).forEach(result => {
+                results.push(result.item);
+            })
+            self.searchResults = results;
+        },
+      };
+    }
+    {{- end -}}
+    {{/* Set Default Xdata then Merge All User Define Data */}}
+    function xdata() {
+    {{- $xdata := dict "menu" false -}}
+    {{- $user_data := $.Page.Params.data -}}
+    {{- range $key, $val := $user_data -}}
+    {{- $prop := dict $key $val -}}
+    {{- $xdata = merge $xdata $prop -}}
+    {{ end }}
+        return JSON.parse( {{- $xdata | jsonify -}} );
+    }
+    {{- if $.IsHome }}
+
+    {{ $sections := $.Page.Params.sections }}
+    {{- $sc := len $sections -}}
+    {{ $videos := slice }}
+
+    {{- if gt $sc 0 -}}
+
+        {{- range $key,$value := $sections -}}
+            {{ if eq $key 0 }}
+    let video_id = "{{.video.id}}";
+            {{- end -}}
+            {{- if .video.id -}}
+                {{$videos = $videos | append (dict "id" .video.id)}}
+            {{ end }}
+        {{- end -}}
+
+    {{ end }}
+    function videoModals(){
+        let videos = JSON.parse( {{- $videos|jsonify -}} );
+        return {
+            modal: false,
+            video_id,
+            videos,
+            closeVideo(){
+                this.$refs.xvideo.src = this.$refs.xvideo.src;
+                this.modal=false;
+            },
+            async playVideo(id){
+                let self = this;
+                self.video_id = id;
+                self.$refs.xvideo.src = 'https://www.youtube.com/embed/'+id+'/?enablejsapi=1';
+                let player =  await new YT.Player('yt-video', {
+                    videoId: id,
+                });
+                self.modal = true;
+            },
+        };
+    }
+    {{end}}
+
+    {{- if $.Page.Params.showcontact -}}
+
+    {{- if $.Page.Params.form.recaptcha.enable -}}
+    var onError = function captchaError() {
+        window.captchaValid = false
+        grecaptcha.reset();
+    }
+    var onSuccess = function captchaSuccess() {
+        window.captchaValid = true
+    }
+    var onExpired = function captchaExpired() {
+        window.captchaValid = false
+        grecaptcha.reset();
+    }
+    {{ end }}
+
+    function contact(){
+        return {
+            formValid: true,
+            form:{
+                {{- $fields  := $.Page.Params.form.fields -}}
+                {{- $indexCount  := 1 -}}
+                {{- range $fields -}}
+                {{- $indexCount = add $indexCount 1 -}}
+                {{- if ge (len $fields) $indexCount -}}
+                {{- .value -}}: '',
+                {{- else -}}
+                {{- .value -}}: ''
+                {{- end -}}
+                {{- end -}}
+            },
+            async submit() {
+                let self = this;
+
+                {{- if $.Page.Params.form.agreement.enable -}}
+                if(!this.contact_agree){
+                    alert("Please Agree To Our Policies.");
+                    return;
+                }
+                {{ end }}
+
+                {{- if $.Page.Params.form.recaptcha.enable -}}
+                if(!window.captchaValid){
+                    alert("Prove Your A Human and Answer reCaptcha!");
+                    return;
+                }
+                {{- end }}
+                
+                let url = {{ $.Page.Params.form.action | absURL }};
+
+                let data = {
+                    {{- $fields  := $.Page.Params.form.fields -}}
+                    {{-  $index  := 1 -}}
+                    {{- range $fields -}}
+                    {{-  $index = add $index 1 -}}
+                    {{- if ge (len $fields) $index -}}
+                    {{- .name -}}: '{{- .value -}}',
+                    {{- else -}}
+                    {{- .name -}}: '{{- .value -}}'
+                    {{- end -}}
+                    {{- end -}}
+                };
+
+                let json = {};
+
+                Object.keys(data).forEach(function(key) {
+                let formKey = data[key]
+                json[key] = self.form[formKey]
+                });
+
+                url = `${url}?`;
+
+                Object.keys(json).forEach(function(key) {
+                url = `${url}&${key}=${json[key]}`;
+                });
+
+                var opts = {
+                method: "{{- $.Page.Params.form.method -}}",
+                mode: "no-cors", 
+                redirect: "follow", 
+                referrer: "no-referrer",
+                body: JSON.stringify(json)
+                };
+
+                try{
+                    let response = await fetch(url, opts);
+
+                    if(!response.ok){
+                        throw Error("Failed Submittion");
+                    }
+                }catch(error){
+                    console.log(error)
+                }
+                    Object.keys(self.form).forEach(function(key) {
+                    self.form[key] = "";
+                })
+                grecaptcha.reset();
+            }// end submit
+        } //end return
+    }// end contanct
+    {{ end }}
+    {{/* Init Shop Cart Data */}}
+{{- if $.Page.Params.showcart -}}
+
+{{- $featured_image := $.Page.Params.featured_image|relURL -}}
+{{- $sharelink := $.Permalink -}}
+{{- $description := $.Page.Description -}}
+{{- $title := $.Page.Title -}}
+{{- $id := $.Page.Params.product_id -}}
+{{- $price := $.Page.Params.price -}}
+{{- $slug := $.Page.Params.slug -}}
+{{- $product_name := $.Page.Params.Title -}}
+
+{{- $images := slice -}}
+{{- $options := slice -}}
+{{- $colors := slice -}}
+{{- $color_options := slice -}}
+{{- $sizes := slice -}}
+{{- $size_options := slice -}}
+{{- $default_name := $product_name -}}
+{{- $sku := $id }}
+{{- $current_color := "" -}}
+{{- $current_size := "" -}}
+{{- $current_size_sku := "" -}}
+
+{{- with $.Page.Params.options -}}
+{{- $options = . }}
+{{- end -}}
+
+{{- /* Start OPTIONS LOOP */ -}}
+{{- range $idx , $option := $options -}}
+
+{{- if ne $option.image nil -}}
+{{- $images = $images | append .image -}}
+{{- end -}}
+
+{{- if eq $option.type "options_color" -}}
+{{- $colors = $colors | append . -}}
+{{- $color_options = $color_options | append .name -}}
+{{- end -}}
+
+{{- if eq $option.type "options_size" -}}
+{{- $sizes = $sizes | append . -}}
+{{- $size_options = $size_options | append .name -}}
+{{- end -}}
+
+{{- end -}}
+{{- /* END OPTIONS LOOP */ -}}
+
+{{- /* Setting Defaults for Current Product */ -}}
+{{- range first 1 (where $colors ".default" true) -}}
+{{- $current_color = .name -}}
+{{- end -}}
+
+{{- range first 1 (where $sizes ".default" true) -}}
+{{- $current_size = .name -}}
+{{- $current_size_sku = .size -}}
+{{- end -}}
+{{- /* TODO: Add Here Extra Options To Create In The Future! */ -}}
+
+{{- if ne $current_color nil -}}
+{{- $default_name = (printf "%s %s" $current_color $default_name) -}}
+{{- end -}}
+
+{{- if ne $current_size nil -}}
+{{-  $default_name = (printf "%s %s" $current_size $default_name) -}}
+{{- end -}}
+
+{{- if ne $current_size_sku nil -}}
+{{- $sku = ((printf "%s-%s" $sku $current_size_sku)|urlize) -}}
+{{- end -}}
+
+{{- if ne $current_color nil -}}
+{{- $sku = ((printf "%s-%s" $sku $current_color)|urlize) -}}
+{{- end -}}
+
+{{ if and (eq $.Page.Type "products") $.IsPage -}}
+var current_product = window.product_details =  {
+    id: {{$sku}},
+    name: {{$default_name}},
+    image: {{$featured_image}},
+    price: {{$price}},
+    qty: 1,
+    {{ if gt (len $options) 0 -}}
+    options: {
+        {{if $color_options -}}
+        color: {
+            name: {{$current_color}}
+        },
+        {{- end -}}
+        {{if $size_options }}
+        size: {
+            name: {{$current_size}},
+            sku: {{$current_size_sku}}
+        }
+        {{- end}}
+    },
+    {{- end }}
+    slug: {{$slug}}
+};
+{{else}}
+{{/* TODO: products.html needs this */}}
+var current_product = window.product_details = {
+    id: null,
+    name: null,
+    image: null,
+    price: null,
+    qty: 1,
+    options: {}
+};
+{{end}}
+
+function shopcart(){
+    return {
+        cartNotify: false,
+        cartOpen: false,
+        cart: cart("items"),
+        tax: cart("tax"),
+        shipping_fee: cart("shipping_fee"),
+        product_details: current_product,
+        {{ if and (eq $.Page.Type "products") $.IsPage -}}
+        product_id: {{$id}},
+        product_name: {{$product_name}},
+        product_price: {{$price}},
+        product_images: {{- $images  -}},
+        carousel_index: 0,
+        {{- if gt (len $size_options) 0}}
+        size_menu: false,
+        {{- end}}
+        {{- if gt (len $current_color) 0 }}
+        color_menu: false,
+        {{- end}}
+        colors: {{$colors}},
+        sizes: {{$sizes}},
+        {{end -}}
+        getSubtotal() {
+        let items = cart("items");
+          if (items.length === 0) {
+            return 0;
+          }
+          let total = 0;
+          items.forEach((item) => {
+            total += item.qty * parseFloat(item.price);
+          });
+          return total.toFixed(2);
+        },
+        getTax() {
+          if (this.getSubtotal() === 0) {
+            return 0;
+          }
+          let tax = parseFloat(cart("tax")) * (parseFloat(this.getSubtotal()) + parseFloat(this.getShippingFee()))
+          return tax.toFixed(2);
+        },
+        getTotal() {
+          if (this.getSubtotal() === 0) {
+            return 0;
+          }
+          let total = parseFloat(this.getSubtotal()) + parseFloat(this.getTax()) + parseFloat(this.getShippingFee())
+          return total.toFixed(2);
+        },
+        getShippingFee() {
+          if (this.getSubtotal() === 0) {
+            return 0;
+          }
+          let shipping_fee = parseFloat(cart("shipping_fee")) / 100;
+          return shipping_fee.toFixed(2);
+        },
+        updateCount(index, value) {
+            if(value <=0){
+            this.emptyCart();
+            }else{
+            store.transact("cart.items", function (items) {
+                items[index]["qty"] = parseInt(value);
+            });
+            this.cart = cart("items");
+            }
+        },
+        addQty(index) {
+        store.transact("cart.items", function (items) {
+            items[index]["qty"] += 1;
+        });
+          this.cart = cart("items");
+          this.cartNotify = true;
+        },
+        subQty(index) {
+        store.transact("cart.items", function (items) {
+            items[index]["qty"] -= 1;
+            if (items[index]["qty"] < 1) {
+                items.splice(index, 1);
+            }
+        });
+          this.cart = cart("items");
+        },
+        emptyCart() {
+        cart("items", []);
+          this.cart = cart("items");
+        },
+        addToCart(product) {
+          let index = this.cart.findIndex(item => item.id === product.id)
+          if(index != -1){
+            this.addQty(index);
+          }else{
+            if(product != undefined || product == null){
+            store.transact("cart.items", function (items) {
+            items.push(product);
+            });
+            this.cart = cart("items");
+          }
+         }
+        },
+        setLinkData() {
+          const amount = parseFloat(this.getTotal()) * 100;
+          const items = cart("items").map(function (a) {
+            return `${a.name} (${a.qty})`;
+          });
+          const description = items.toString();
+          const remarks = null;
+
+          return {
+            amount: amount,
+            description: description,
+            remarks: remarks,
+          };
+        },
+        async createLink() {
+          const data = this.setLinkData();
+          // this URL if using per domain name functions must be updated to that subdomain
+          let url = `${window.location.origin}/.netlify/functions/create-link`;
+          try {
+                const config = {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                }
+                const response = await fetch(url, config)
+                //const json = await response.json()
+                if (response.ok) {
+                    response.json().then(function (data) {
+                        console.log(data);
+                        const {url} = data.data.attributes;
+                        paymongo("reference_no", data.data.id);
+                        window.open(url, "_blank");
+                    });
+                }
+            } catch (error) {
+                    console.log(error)
+            }
+          
+        },
+        async checkout() {
+          const data = await this.createLink();
+          await this.emptyCart();
+        },
+        kebab(str){
+            return str
+            .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+            .map(x => x.toLowerCase())
+            .join('-')
+        },
+        {{ if and (eq $.Page.Type "products") $.IsPage -}}
+        highlightSize(size){
+            return this.product_details.options.size.name == size.name;
+        },
+        highlightColor(color){
+            return this.product_details.options.color.name == color;
+        },
+        colorPickerClass(color,index){
+            let highlight = this.highlightColor(color.name)
+            let firstItem  = index > 0;
+            let colorClass = {};
+            colorClass["ml-1"] = firstItem;
+            colorClass["bg-opacity-100"] = highlight;
+            colorClass["opacity-100"] = highlight;
+            colorClass["border-opacity-100"] = highlight;
+            colorClass["bg-opacity-50"] = !highlight;
+            colorClass["border-brand"] = highlight;
+            return colorClass;
+        },
+        colorPicker(color){
+            return `background-color: ${color.color}`;
+        },
+        {{/* TODO: create another implementation for product.html 
+            which dont need to use this.product_id & this.product_name
+            Create a new check if for not $.IsPage but .Type products
+        */ -}}
+        chooseColor(color){
+            this.product_details.options.color.name = color.name;
+            let id = `${this.product_id}`;
+            let name = `${this.product_name}`
+            if(this.sizes.length > 0){
+                id = `${id} ${this.product_details.options.size.sku}`
+            }
+            if(this.colors.length > 0){
+                id = `${id} ${this.product_details.options.color.name}`
+                name = `${this.product_details.options.color.name} ${name}`
+            }
+            if(this.sizes.length > 0){
+                name = `${this.product_details.options.size.name} ${name} `
+            }
+            this.product_details.id = this.kebab(id);
+            this.product_details.name = name;
+            this.updatePricing();
+        },
+        {{/* TODO: create another implementation for product.html 
+            which dont need to use this.product_id & this.product_name
+            Create a new check if for not $.IsPage but .Type products
+        */ -}}
+        chooseSize(size){
+            this.product_details.options.size.name = size.name;
+            this.product_details.options.size.sku = size.size;
+            let id = `${this.product_id}`;
+            let name = `${this.product_name}`
+            if(this.colors.length > 0){
+                name = `${this.product_details.options.color.name} ${name}`
+            }
+            if(this.sizes.length > 0){
+                id = `${id}${this.product_details.options.size.sku}`
+                name = `${this.product_details.options.size.name} ${name}`
+            }
+            if(this.colors.length >0){
+                id = `${id} ${this.product_details.options.color.name}`
+            }
+            this.product_details.id = this.kebab(id);
+            this.product_details.name = name;
+            this.updatePricing();
+        },
+        updatePricing(){
+            let self = this;
+            
+            let colorIndex = self.colors.findIndex(item => item.name == self.product_details.options.color.name)
+            let colorOption = {
+                amount: self.colors[colorIndex]?.amount,
+                change: self.colors[colorIndex]?.change
+            };
+            
+            let sizeIndex = self.sizes.findIndex(item => item.name == self.product_details.options.size.name)
+            let sizeOption = {
+                amount: self.sizes[sizeIndex]?.amount,
+                change: self.sizes[sizeIndex]?.change
+            };
+
+            let basePrice = self.product_price;
+            if(sizeOption.change == "add" && sizeOption.amount){
+            basePrice = parseFloat(basePrice) + parseFloat(sizeOption.amount);
+            }else if(sizeOption.change == "subtract" && sizeOption.amount){
+            basePrice = parseFloat(basePrice) - parseFloat(sizeOption.amount);
+            }
+
+            if(colorOption.change == "add" && colorOption.amount){
+            basePrice = parseFloat(basePrice) + parseFloat(colorOption.amount);
+            }else if(colorOption.change == "subtract" && colorOption.amount){
+            basePrice = parseFloat(basePrice) - parseFloat(colorOption.amount);
+            }
+            self.product_details.price = basePrice;
+        },
+        setFeatured(image,index){
+            let self = this;
+            this.product_details.image = image;
+            this.carousel_index = index;
+            self.$refs[`image-${index}`].scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"})
+        },
+        prevImage(){
+            let i = this.carousel_index;
+            if (i === 0) {
+                i = this.product_images.length;
+            }
+            i = i - 1;
+            this.setFeatured(this.product_images[i],i)
+        },
+        nextImage(){
+            let i = this.carousel_index;
+            i = i + 1;
+            i = i % this.product_images.length;
+            this.setFeatured(this.product_images[i],i)
+        }
+        {{end -}}
+    }
+}
+    {{ end }}
+</script>

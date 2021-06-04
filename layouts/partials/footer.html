@@ -1,0 +1,56 @@
+{{- $footer := .Site.Menus.footer -}}
+{{- $social := .Site.Data.social_links -}}
+<footer>
+  <div>
+    <div
+      class="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8"
+    >
+      {{- $lc := len $footer -}}
+      {{- if gt $lc 0 }}
+      <nav class="-mx-5 -my-2 flex flex-wrap justify-center">
+          {{- range $footer -}} 
+          {{- $url := .URL | relLangURL -}} 
+          {{- with .Page -}} 
+          {{- $url = .RelPermalink -}} 
+          {{- end }}
+        <div class="px-5 py-2">
+          <a
+            href="{{$url}}"
+            class="text-base leading-6 
+            {{- if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) -}}
+            text-primary
+            hover:text-accent
+            hover:border-accent
+            {{else}}
+            text-neutral
+            hover:text-primary
+            hover:border-primary
+            {{- end -}}
+            ">
+            {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
+          </a>
+        </div>
+        {{- end }}
+      </nav>
+      {{- end -}}
+      {{ $sc := len $social.links }}
+      {{ if gt $sc 0 }}
+      <div class="mt-8 flex space-x-4 justify-center">
+      {{- range $social.links -}}
+        <a href="{{.link}}">
+          <span class="sr-only">{{upper .type }}</span>
+          <img class="h-6 w-6" src="{{.icon|relURL}}">
+        </a>
+      {{- end -}}
+      </div>
+      {{end}}
+      {{- with .Site.Params.copyright -}}
+      <div class="mt-8">
+        <p class="text-center text-base leading-6 text-gray-400">
+          {{.}}
+        </p>
+      </div>
+      {{ end -}}
+    </div>
+  </div>
+</footer>

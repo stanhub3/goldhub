@@ -1,0 +1,76 @@
+{{- $bg := "" -}}
+{{- with .bg.color -}}
+{{- $bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .bg.shade}}
+{{- $bg = (printf "%v%v%v" $bg "-" .) -}}
+{{- end -}}
+
+{{- $text := "" -}}
+{{- with .text.color -}}
+{{- $text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .text.shade}}
+{{- $text = (printf "%v%v%v" $text "-" .) -}}
+{{- end -}}
+
+
+{{- $htext := "" -}}
+{{- with .header.color -}}
+{{- $htext = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .header.shade}}
+{{- $htext = (printf "%v%v%v" $htext "-" .) -}}
+{{- end -}}
+
+{{- $ttext := "" -}}
+{{- with .tag.color -}}
+{{- $ttext = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .tag.shade}}
+{{- $ttext = (printf "%v%v%v" $ttext "-" .) -}}
+{{- end -}}
+
+
+{{- $h := .image.height -}}
+{{- with $h -}}
+{{- $h = (printf "%v%v" "h-" $h) -}}
+{{- end -}}
+
+{{$tag := .tag.name -}}
+{{$header := .header.name -}}
+{{$description := .description -}}
+
+
+<div class="relative {{$bg}}">
+  {{with .image -}}
+    <div class="{{$h}} mt-10 md:absolute md:left-0  md:w-1/2">
+    <img class="w-full h-full" src="{{.url}}" alt="{{.alt}}">
+  </div>
+  {{end -}}
+  <div class="relative max-w-screen-xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <div class="md:ml-auto md:w-1/2 md:pl-10">
+      <div class="text-base leading-6 font-semibold uppercase tracking-wider {{$ttext}}">
+        {{$tag -}}
+      </div>
+      <h2 class="mt-2 {{$htext}} text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10">
+        {{$header -}}
+      </h2>
+      <p class="mt-3 text-lg leading-7 {{$text}}">
+        {{$description -}}
+      </p>
+      <div class="mt-8">
+        {{range $index,$value:= .cta -}}
+        <div class="inline-flex rounded-md shadow">
+          <a href="{{$value.url}}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-light bg-primary hover:bg-primary-75  focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+            {{- $value.text -}}
+            {{if $value.icon.image -}}
+            <img src="{{$value.icon.image}}" class="-mr-1 ml-3 h-{{$value.icon.height}} w-{{$value.icon.height}}" alt="{{$value.icon.alt}}">
+            {{end -}}
+          </a>
+        </div>
+        {{end -}}
+      </div>
+    </div>
+  </div>
+</div>

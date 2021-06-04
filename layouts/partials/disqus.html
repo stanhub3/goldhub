@@ -1,0 +1,31 @@
+{{- if hugo.IsProduction }}
+
+{{- if $.Site.DisqusShortname -}}
+
+<div id="disqus_thread" class="flex max-w-7xl mx-auto justify-center"></div>
+<script>
+var disqus_config = function () {
+this.page.url = {{$.Page.Permalink}};
+this.page.identifier = {{$.Page.Permalink}};
+};
+(function() {
+var disqus_shortname = '{{ $.Site.DisqusShortname }}';
+var d = document, s = d.createElement('script');
+s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<div class="flex max-w-7xl mx-auto justify-center font-bold font-steel text-4xl">
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">Comments Powered by Disqus.</a></noscript>
+<a href="https://disqus.com/" class="dsq-brlink text-center">Comments Powered By: <span class="logo-disqus">Disqus</span></a>
+</div>
+{{end}}
+
+{{else}}
+{{- if $.Site.DisqusShortname -}}
+<div class="flex max-w-7xl mx-auto justify-center font-bold font-steel text-4xl">
+<a href="https://disqus.com/" class="dsq-brlink text-center">Comments Powered By: <span class="logo-disqus">Disqus</span></a>
+</div>
+{{end}}
+{{end}}

@@ -1,0 +1,16 @@
+{{if gt (len .images) 0}}
+  <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="
+    {{with .gap}}gap-{{.}}{{end}}
+    {{with .col}}grid grid-cols-{{.}}{{end}} 
+    {{with .colMD}}md:grid-cols-{{.}}{{end}} 
+    {{with .colLG}}lg:grid-cols-{{.}}{{end}}
+    ">
+      {{range .images}}
+      <div class="col-span-{{.span}} flex justify-center md:col-span-{{.spanMD}} lg:col-span-{{.spanLG}}">
+        <img class="h-12" src="{{.url}}" alt="{{.alt}}">
+      </div>
+     {{end}}
+    </div>
+  </div>
+{{end}}

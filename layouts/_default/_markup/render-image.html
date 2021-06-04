@@ -1,0 +1,3 @@
+<div class="flex mx-auto">
+  <img class="w-full" src="{{ .Destination | safeURL| absURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+</div>

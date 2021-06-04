@@ -1,0 +1,58 @@
+{{$themeable := slice (dict "value" "brand") (dict "value" "primary") (dict "value" "primary-darker") (dict "value" "secondary") (dict "value" "accent") (dict "value" "success") (dict "value" "info") (dict "value" "warning") (dict "value" "error")}}
+{{$shadeable := slice (dict "value" "gray") (dict "value" "cool-gray") (dict "value" "red") (dict "value" "orange") (dict "value" "yellow") (dict "value" "green") (dict "value" "teal") (dict "value" "blue") (dict "value" "indigo") (dict "value" "purple") (dict "value" "pink")}}
+<div class="bg-light">
+  <div class="max-w-screen-xl mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
+    <div class="{{with .bg}}{{with .color}}bg-{{.}}{{end}}{{with .shade}}-{{.}}{{end}}{{end}} px-6 py-6 rounded-lg md:py-12 md:px-12 lg:py-16 lg:px-16 xl:flex xl:items-center">
+      <div class="xl:w-0 xl:flex-1">
+        <h2 class="text-2xl leading-8 font-extrabold tracking-tight text-white sm:text-3xl sm:leading-9">
+          {{.header}}
+        </h2>
+        <p class="mt-3 max-w-3xl text-lg leading-6 text-indigo-200" id="newsletter-headline">
+          {{.description}}
+        </p>
+      </div>
+      <div class="mt-8 sm:w-full sm:max-w-md xl:mt-0 xl:ml-8">
+        {{with .form}}
+        <form method="{{.method}}" action="{{.action}}" class="sm:flex" aria-labelledby="newsletter-headline">
+          <input aria-label="Email address" type="email" required class="appearance-none w-full px-5 py-3 border border-transparent text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 transition duration-150 ease-in-out" placeholder="{{.placeholder}}">
+          <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+            {{$hover_shade := 100}}
+            {{$focus_shade := 200}}
+            {{with .bg.shade}}
+            {{$hover_shade = sub (int .) 100}}
+            {{$focus_shade = sub (int .) 200}}
+            {{end}}
+            {{if le $hover_shade 0}}
+            {{$hover_shade = add (int .bg.shade) 100}}
+            {{end}}
+            {{if le $focus_shade 0}}
+            {{$focus_shade = add (int .bg.shade) 200}}
+            {{end}}
+            <button class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white focus:outline-none transition duration-150 ease-in-out
+            {{with .bg}}{{with .color}}bg-{{.}}{{end}}{{with .shade}}-{{.}}{{end}}{{end}} 
+            {{range  last 1 (where $shadeable `value` `in` .bg.color)}}
+            hover:bg-{{.value}}-{{$hover_shade}}
+            focus:bg-{{.value}}-{{$focus_shade}}
+            {{end}}
+            {{range  last 1 (where $themeable `value` `in` .bg.color)}}
+            hover:bg-{{.value}}-90
+            focus:bg-{{.value}}-75
+            {{end}}
+            ">
+              {{.submit}}
+            </button>
+          </div>
+        </form>
+        {{end}}
+        {{with .privacy}}
+        <p class="mt-3 text-sm leading-5 text-indigo-200">
+          {{.explain}}
+          <a href="{{.url}}" class="text-white font-medium underline">
+            {{.policy}}
+          </a>
+        </p>
+        {{end}}
+      </div>
+    </div>
+  </div>
+</div>

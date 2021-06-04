@@ -1,0 +1,53 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+{{ block "title" . }} 
+{{- .Title }} - {{ .Site.Title -}} 
+{{ end }}
+</title>
+{{- if .Description -}}
+<meta name="description" content="{{ .Description }}" /> 
+{{- end -}} 
+{{- if .Keywords -}}
+<meta name="keywords" content="{{ delimit .Keywords " , " }}" /> 
+{{- end -}} 
+{{- if .Params.Author -}}
+<meta name="author" content="{{ .Params.Author}}" /> 
+{{- end -}}
+{{/* For Local Dev Use Our Local Fonts */}}
+{{- if .Site.IsServer -}}
+<link rel="stylesheet" href="/fonts/inter/inter.css">
+{{- else -}}
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+{{ if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.tag "aguafina")}}
+<link href='https://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet'>
+{{ end }}
+{{ if or (eq $.Site.Params.brand.font.name "qwigley") (eq $.Site.Params.brand.font.tag "qwigley")}}
+<link href='https://fonts.googleapis.com/css?family=Qwigley' rel='stylesheet'>
+{{ end }}
+{{- end -}}
+<link rel="shortcut icon" type="image/jpg" href="{{$.Site.Params.favicon | relURL}}"/>
+{{/* Load Brand Fonts If Given */}}
+{{ if or (ne $.Site.Params.brand.font.name nil) (ne $.Site.Params.brand.font.tag nil)}}
+{{ $font_template := resources.Get "css/fonts.css" }} 
+{{- $fonts := $font_template | resources.ExecuteAsTemplate "fonts.css" . | resources.ToCSS -}}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" type="text/css"> 
+{{- end -}}
+{{ $theme_template := resources.Get "css/app.pcss" }} 
+{{- $styles := $theme_template | resources.ExecuteAsTemplate "app.css" . | resources.ToCSS | postCSS (dict "config" "./assets/css/postcss.config.js") -}}
+
+{{- if .Site.IsServer -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}"> 
+{{- else -}} {{ $styles := $styles| minify | fingerprint | resources.PostProcess }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"> 
+{{- end -}}
+{{/* Ensures We Dont Flash Anything Until alpineJS is loaded */}}
+<style>
+    [x-cloak] {
+        display: none;
+    }
+</style>
+{{/* <!-- All JS our Site Needed --> */}}
+{{- $js := resources.Match "js/*.js" | resources.Concat "js/bundle.js" -}} 
+{{- if hugo.IsProduction }}{{ $js = $js | minify | fingerprint }}{{ end -}}
+<script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }} integrity="{{ $js.Data.Integrity }}" {{ end }} crossorigin="anonymous"></script>

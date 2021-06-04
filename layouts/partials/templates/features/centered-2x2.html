@@ -1,0 +1,35 @@
+  <div class="mt-10">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center">
+      <p class="text-base leading-6 text-brand font-semibold tracking-wide uppercase">{{.tag}}</p>
+      <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-primary-darker sm:text-4xl sm:leading-10">
+        {{.header}}
+      </h3>
+      <p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
+        {{.description}}
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <ul class="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
+        {{range .features}}
+        <li class="mt-5">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-24 w-24 rounded-full bg-gray-300 bg-opacity-50 shadow-xl">
+                <img src="{{.image}}" class="h-16 w-16">
+              </div>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg leading-6 font-medium text-primary-darker">{{.title}}</h4>
+              <p class="mt-2 text-base leading-6 text-gray-500">
+                {{.description}}
+              </p>
+            </div>
+          </div>
+        </li>
+        {{end}}
+      </ul>
+    </div>
+  </div>
+</div>

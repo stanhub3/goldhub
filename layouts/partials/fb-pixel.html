@@ -1,0 +1,46 @@
+{{- if hugo.IsProduction -}}
+
+{{- $pixel := "" -}}
+{{- if $.Site.Params.fbpixel.id -}}
+{{- $pixel = $.Site.Params.fbpixel.id -}}
+{{- end -}}
+{{- if $.Params.fbpixel.id -}}
+{{- $pixel = $.Params.fbpixel.id -}}
+{{- end -}}
+
+{{- $pixel_enable := false -}}
+
+{{- if $.Site.Params.fbpixel.enable -}}
+{{- $pixel_enable = $.Site.Params.fbpixel.enable -}}
+{{- end -}}
+{{- if $.Params.fbpixel.enable -}}
+{{- $pixel_enable = $.Params.fbpixel.enable -}}
+{{- end -}}
+
+{{- $pixel_track := "PageView" -}}
+{{- if $.Site.Params.fbpixel.track -}}
+{{- $pixel_track = $.Site.Params.fbpixel.track -}}
+{{- end -}}
+{{- if $.Params.fbpixel.track -}}
+{{- $pixel_track = $.Params.fbpixel.track -}}
+{{- end -}}
+
+{{- if $pixel_enable -}}
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', {{$pixel}});
+fbq('track', {{$pixel_track}});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id={{$pixel}}&ev=PageView&noscript=1"
+/></noscript>
+{{- end -}}
+
+{{- end -}}

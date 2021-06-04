@@ -1,0 +1,237 @@
+{{- define "main" -}}
+{{- $sharelink := .Permalink -}}
+{{- $description := .Description -}}
+{{- $title := .Title -}}
+{{- $options := slice -}}
+{{- $color_options := slice -}}
+{{- $size_options := slice -}}
+
+{{- with $.Page.Params.options -}}
+{{- $options = . }}
+{{- end -}}
+{{- /* Start OPTIONS LOOP */ -}}
+{{- range $idx , $option := $options -}}
+
+{{- if eq $option.type "options_color" -}}
+{{- $color_options = $color_options | append .name -}}
+{{- end -}}
+
+{{- if eq $option.type "options_size" -}}
+{{- $size_options = $size_options | append .name -}}
+{{- end -}}
+
+{{- end -}}
+<section class="text-gray-700 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="mx-auto flex flex-wrap">
+      <div class="mx-auto lg:w-1/2">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">
+          {{title .Type}}
+
+        </h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+          {{title $title}}
+
+        </h1>
+        <div
+          class="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl"
+        >
+          <div class="lg:w-full w-full h-auto">
+            <img
+              x-ref="featured_image"
+              alt="{{$title}}"
+              class="w-full h-full object-cover object-center rounded"
+              :src="product_details.image"
+            />
+          </div>
+          <button
+            @click="prevImage()"
+            class="absolute inset-y-1/2 left-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-brand hover:text-secondary focus:text-accent -ml-6 focus:outline-none focus:shadow-outline"
+          >
+            <span class="block" style="transform: scale(-1);">&#x279c;</span>
+          </button>
+          <button
+            @click="nextImage()"
+            class="absolute inset-y-1/2 right-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-brand hover:text-secondary focus:text-accent -mr-6 focus:outline-none focus:shadow-outline"
+          >
+            <span class="block" style="transform: scale(1);">&#x279c;</span>
+          </button>
+        </div>
+        <ul
+          style="scrollbar-width: thin;"
+          class="overflow-x-scroll whitespace-no-wrap py-1 w-full"
+        >
+          <template x-for="(image, index) in product_images" :key="index">
+            <li
+              @click="setFeatured(image,index)"
+              :class="{'opacity-100': (carousel_index === index)}"
+              class="inline-block space-x-2 opacity-50 hover:opacity-100 focus:opacity-100"
+            >
+              <img :x-ref="`image-${index}`" class="h-24" :src="image" />
+            </li>
+          </template>
+        </ul>
+      </div>
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <div class="flex mb-4">
+          <div class="mt-8 flex space-x-4 justify-center">
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u={{$sharelink}}"
+            >
+              <span class="sr-only">{{.}}</span>
+              <img class="h-6 w-6" src="/images/facebook.svg" />
+            </a>
+            <a
+              href="https://twitter.com/intent/tweet?text={{$title}}&url={{$sharelink}}"
+            >
+              <span class="sr-only">{{.}}</span>
+              <img class="h-6 w-6" src="/images/twitter.svg" />
+            </a>
+          </div>
+        </div>
+        <p class="prose prose-lg">{{$description}}</p>
+        {{ if gt (len $color_options) 0 -}}
+        <div x-show="colors.length > 0">
+          <div class="w-full pt-5">
+            <label
+              id="listbox-label"
+              class="block text-xl leading-5 font-bold text-gray-700 pr-2"
+            >
+              Choosen Color:
+              <span class="text-brand" x-text="product_details.options.color.name">
+              </span>
+            </label>
+          </div>
+          <div class="flex py-2 justify-end">
+            <template x-for="(color, index) in colors" :key="index">
+              <button
+                @click="chooseColor(color)"
+                :class="colorPickerClass(color,index)"
+                class="opacity-50 border-2 px-2 rounded-full w-12 h-12 hover:opacity-100 focus:opacity-100 focus:outline-none"
+                :style="colorPicker(color)"
+              ></button>
+            </template>
+          </div>
+        </div>
+        {{end}}
+        {{ if gt (len $size_options) 0 -}}
+        <div class="space-y-1 pb-10" x-show="sizes.length > 0">
+          <label
+            id="listbox-label"
+            class="block text-xl leading-5 font-bold text-gray-700"
+          >
+            Choose Size
+          </label>
+          <div class="relative pt-4">
+            <span class="inline-block w-full rounded-md shadow-sm">
+              <button
+                @click="size_menu = true"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="true"
+                aria-labelledby="listbox-label"
+                class="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                <span
+                  x-text="product_details.options.size.name"
+                  class="block truncate"
+                >
+                </span>
+                <span
+                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                >
+                  <svg
+                    class="h-5 w-5 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </span>
+            <div
+              x-show="size_menu"
+              class="absolute mt-3 w-full rounded-md bg-white shadow-lg"
+            >
+              <ul
+                @click.away="size_menu = false"
+                tabindex="-1"
+                role="listbox"
+                aria-labelledby="listbox-label"
+                aria-activedescendant="listbox-item-3"
+                class="max-h-60 rounded-md text-base font-bold leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
+              >
+                <template x-for="(size, index) in sizes" :key="index">
+                  <li
+                    @click="chooseSize(size)"
+                    id="listbox-item-0"
+                    role="option"
+                    :class="{'bg-cool-gray-300': highlightSize(size),'text-xl': highlightSize(size)}"
+                    class="text-gray-900 cursor-default select-none relative py-2 pl-8 pr-4"
+                  >
+                    <span
+                      x-text="size.name"
+                      :class="{'font-semibold text-white': highlightSize(size)}"
+                      class="font-normal block truncate"
+                    >
+                    </span>
+                    <span
+                      class="absolute inset-y-0 left-0 flex items-center pl-1.5"
+                    >
+                      <svg
+                        x-show="highlightSize(size)"
+                        :class="{'text-brand-90': highlightSize(size)}"
+                        class="h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{end}}
+        <div class="flex pt-5">
+            <span x-text="`₱ ${parseFloat(product_details.price).toFixed(2)}`"
+                class="title-font font-medium text-2xl text-gray-900">
+            </span>
+            <button @click="addToCart(product_details)"
+                class="flex ml-auto text-white bg-brand border-0 py-2 px-6 focus:outline-none hover:bg-brand-75 rounded">
+                Add To Cart
+            </button>
+        </div>
+      </div>
+    </div>
+    <article
+      class="pt-10 max-w-7xl prose prose-sm sm:prose-md md:prose-lg  lg:prose-2xl mx-auto px-5 sm:px-0"
+    >
+      {{- .Content -}}
+
+    </article>
+  </div>
+{{- partial "related.html" . -}}
+{{- partial "disqus.html" . -}}
+
+</section>
+{{- end -}}
+{{- define "scripts" -}}
+{{- if $.Page.Params.showsearch -}}
+<script src="/js/fuse.js"></script>
+{{- end -}}
+{{- end -}}

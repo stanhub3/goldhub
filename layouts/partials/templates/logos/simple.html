@@ -1,0 +1,33 @@
+{{- $bg := "" -}}
+{{- with .bg.color -}}
+{{- $bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .bg.shade}}
+{{- $bg = (printf "%v%v%v" $bg "-" .) -}}
+{{- end -}}
+{{$h := .logos.height}}
+{{with $h}}
+{{$h = (printf "%v%v" "h-" $h)}}
+{{end}}
+<div class="{{$bg}}">
+  <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    {{with .logos}}
+    <div class="
+    {{with .gap}}gap-{{.}}{{end}}
+    {{with .col}}grid grid-cols-{{.}}{{end}} 
+    {{with .colMD}}md:grid-cols-{{.}}{{end}} 
+    {{with .colLG}}lg:grid-cols-{{.}}{{end}}
+    ">
+      {{range .images}}
+      <div class="flex justify-center
+      {{with .span}}col-span-{{.}}{{end}} 
+      {{with .spanMD}}md:col-span-{{.}}{{end}} 
+      {{with .spanLG}}lg:col-span-{{.}}{{end}}
+      ">
+        <img class="{{$h}}" src="{{.url}}" alt="{{.alt}}">
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+</div>

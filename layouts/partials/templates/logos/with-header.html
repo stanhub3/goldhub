@@ -1,0 +1,45 @@
+{{- $logobg := "" -}}
+{{- $bg := "" -}}
+{{- with .bg.color -}}
+{{- $bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .bg.shade}}
+{{- $bg = (printf "%v%v%v" $bg "-" .) -}}
+{{- end -}}
+
+{{- with .logobg.color -}}
+{{- $logobg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .logobg.shade}}
+{{- $logobg = (printf "%v%v%v" $logobg "-" .) -}}
+{{- end -}}
+
+{{$h := .logos.height}}
+{{with $h}}
+{{$h = (printf "%v%v" "h-" $h)}}
+{{end}}
+<div class="{{$bg}}">
+  <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <p class="text-center text-base leading-6 font-semibold uppercase text-gray-600 tracking-wider">
+      {{.header}}
+    </p>
+    {{with .logos}}
+    <div class="mt-6 g:mt-8
+    {{with .gap}}gap-{{.}}{{end}}
+    {{with .col}}grid grid-cols-{{.}}{{end}} 
+    {{with .colMD}}md:grid-cols-{{.}}{{end}} 
+    {{with .colLG}}lg:grid-cols-{{.}}{{end}}
+    ">
+      {{range .images}}
+      <div class="flex justify-center py-8 px-8 {{$logobg}}
+      {{with .span}}col-span-{{.}}{{end}} 
+      {{with .spanMD}}md:col-span-{{.}}{{end}} 
+      {{with .spanLG}}lg:col-span-{{.}}{{end}}
+      ">
+        <img class="{{$h}}" src="{{.url}}" alt="{{.alt}}">
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+</div>

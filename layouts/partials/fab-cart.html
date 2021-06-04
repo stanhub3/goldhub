@@ -1,0 +1,173 @@
+{{ with .Site.Data.cart }}
+<div
+  x-cloak
+  x-show="cartOpen"
+  class="bg-light flex fixed top-0 z-20 w-full max-h-1/2 overflow-y-auto border-dotted border-b-4 border-primary"
+>
+  <div class="w-full mx-auto">
+    <div
+      @click.away="cartOpen = !cartOpen"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 rounded-b-lg"
+    >
+      <header class="flex items-center pb-3 pl-6 pr-3 pt-5">
+        <span class="font-semibold inline-flex items-center">
+          {{.title}}
+        </span>
+        <button
+          @click="cartOpen = false"
+          class="focus:bg-close focus:text-white text-close focus:outline-none inline-flex leading-snug ml-auto px-2 py-2 rounded"
+        >
+          <svg
+            class="stroke-current inline-block h-10 w-10"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </header>
+      <template
+        x-if="cart.length > 0"
+        x-for="(item, index) in cart"
+        :key="index"
+        class="pb-5"
+      >
+        <div class="flex flex-wrap mx-5 py-4 border-neutral border-dotted border-b-2 text-info">
+          <figure class="relative rounded">
+            <span
+              x-text="item.qty"
+              class="-mr-4 -mt-3 absolute bg-gray-600 border-4 border-white px-2 right-0 rounded-full text-white text-xs"
+            ></span>
+            <img :src="item.image" alt="" class="h-12" />
+          </figure>
+          <div class="flex flex-1 flex-col justify-center pl-6">
+            <p class="text-sm" x-text="item.name"></p>
+            <span class="block mt-px text-sm"
+              >SKU: <span x-text="item.id"></span
+            ></span>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center text-sm"
+          >
+          <div class="flex-row">
+               ₱<span x-text="item.price"></span> <span class="mx-2">x</span>
+            <span x-text="item.qty"></span>
+          </div>
+           
+          </div>
+          <div
+            class="flex sm:flex-grow flex-initial sm:justify-end items-center justify-center text-sm"
+          >
+            <div class="h-10 w-32">
+              <div
+                class="flex flex-row h-10 md:w-full rounded-lg relative  mt-1"
+              >
+                <button
+                  @click="subQty(index)"
+                  class="bg-primary text-white hover:bg-accent h-full w-20 rounded-l cursor-pointer focus:outline-none"
+                >
+                  <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+                <style>
+                  input[type="number"]::-webkit-inner-spin-button,
+                  input[type="number"]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
+                </style>
+                <input
+                  type="number"
+                  x-on:blur="updateCount(index,$event.target.value)"
+                  class="text-white bg-primary outline-none focus:outline-none focus:shadow-outline-primary text-center w-full focus:bg-transparent  focus:text-primary font-semibold text-md  flex items-center"
+                  name="custom-input-number"
+                  :value="item.qty"
+                />
+                <button
+                  @click="addQty(index)"
+                  class="bg-primary text-white hover:bg-accent h-full w-20 rounded-r cursor-pointer focus:outline-none"
+                >
+                  <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            @click="addToCart()"
+            class="flex flex-grow items-center justify-end md:justify-center text-sm"
+          >
+            ₱<span x-text="item.price*item.qty"></span>
+          </div>
+        </div>
+      </template>
+      <div x-show="cart.length === 0">
+        <div
+          class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8"
+        >
+        <div class="flex-col inline-flex w-full text-center">
+            {{ with .empty_cart_img }}
+            <img src="{{.}}" class="h-24"/>
+            {{end}}
+          <h2
+            class="text-3xl leading-9 font-extrabold tracking-tight text-accent sm:text-4xl sm:leading-10"
+          >
+            {{.empty_cart_error_msg}}
+            <br />
+            {{.empty_cart_label}}
+          </h2>
+        </div>
+        
+        </div>
+      </div>
+      <div
+        x-show="cart.length > 0"
+        class="max-w-screen-xl mx-auto flex items-end justify-end mt-5"
+      >
+        <div class="flex-col inline-flex">
+          <span class="inline-flex items-center">
+            Subtotal: ₱<span x-text="getSubtotal()"></span>
+          </span>
+          <span class="inline-flex items-center">
+            Shipping Fee: ₱<span x-text="getShippingFee()"></span>
+          </span>
+          <span
+            x-show="tax>0 && tax <=1"
+            class="inline-flex items-center"
+          >
+            Tax: ₱<span x-text="getTax()"></span>
+          </span>
+          <span class="font-semibold inline-flex items-center">
+            Total: ₱<span x-text="getTotal()"></span>
+          </span>
+        </div>
+      </div>
+      <div
+        x-show="cart.length >0"
+        class="max-w-screen-xl mx-auto flex items-end justify-end"
+      >
+        <div class="m-4 inline-flex rounded-md shadow">
+          <a
+            @click="emptyCart()"
+            class="bg-accent text-white cursor-pointer inline-flex items-center justify-center px-5 py-3 text-base leading-6 font-medium rounded-md transition duration-150 ease-in-out"
+          >
+            Empty Cart
+          </a>
+        </div>
+        <div class="m-4 inline-flex rounded-md shadow">
+          <a
+            @click="checkout()"
+            class="bg-primary text-white cursor-pointer inline-flex items-center justify-center px-5 py-3 text-base leading-6 font-medium rounded-md transition duration-150 ease-in-out"
+          >
+            Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

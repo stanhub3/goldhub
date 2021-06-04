@@ -1,0 +1,152 @@
+{{- $upperbg := "" -}}
+{{- with .upperbg.color -}}
+{{- $upperbg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .upperbg.shade}}
+{{- $upperbg = (printf "%v%v%v" $upperbg "-" .) -}}
+{{- end -}}
+
+{{- $lowerbg := "" -}}
+{{- with .lowerbg.color -}}
+{{- $lowerbg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .lowerbg.shade}}
+{{- $lowerbg = (printf "%v%v%v" $lowerbg "-" .) -}}
+{{- end -}}
+
+{{- $bg := "" -}}
+{{- with .featured.color -}}
+{{- $bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .featured.shade}}
+{{- $bg = (printf "%v%v%v" $bg "-" .) -}}
+{{- end -}}
+
+{{$color := .featured.color}}
+
+{{$shade := 0}}
+{{if .featured.shade}}
+{{$shade = .featured.shade}}
+{{end}}
+
+{{$hover := sub (int $shade) 100}}
+{{if eq $shade 50}}
+{{$hover := add (int $shade) 50}}
+{{end}}
+
+{{if eq $shade 900}}
+{{$hover := sub (int $shade) 100}}
+{{end}}
+
+{{$themeable := slice (dict "value" "brand") (dict "value" "primary") (dict "value" "primary-darker") (dict "value" "secondary") (dict "value" "accent") (dict "value" "success") (dict "value" "info") (dict "value" "warning") (dict "value" "error")}}
+{{$shadeable := slice (dict "value" "gray") (dict "value" "cool-gray") (dict "value" "red") (dict "value" "orange") (dict "value" "yellow") (dict "value" "green") (dict "value" "teal") (dict "value" "blue") (dict "value" "indigo") (dict "value" "purple") (dict "value" "pink")}}
+
+<div class="{{$upperbg}}">
+
+  <div class="pt-12 sm:pt-16 lg:pt-24">
+    <div class="max-w-screen-xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto lg:max-w-none">
+        <h2 class="text-lg leading-6 font-semibold text-gray-300 uppercase tracking-wider">
+          {{.brand_title}}
+        </h2>
+        <p class="mt-2 text-3xl leading-9 font-extrabold text-white sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-none">
+          {{.title}}
+        </p>
+        <p class="mt-2 text-xl leading-7 text-gray-300">
+            {{- .description -}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 pb-12 {{$lowerbg}} sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24">
+    
+    <div class="relative">
+      <div class="absolute inset-0 h-3/4 {{$upperbg}}"></div>
+      <div class="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md mx-auto lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5">
+          {{range $index,$value := (first 2 .tiers)}}
+          <div class="{{if gt $index 0}}mt-4 lg:mt-0{{end}} rounded-lg shadow-lg overflow-hidden">
+            <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
+              <div>
+                <h3 class="inline-flex px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase {{$bg}} text-white" id="tier-{{lower .name}}">
+                  {{.name}}
+                </h3>
+              </div>
+              <div class="mt-4 flex items-baseline text-6xl leading-none font-extrabold">
+                {{.currency}}{{.amount}}
+                <span class="ml-1 text-2xl leading-8 font-medium text-gray-500">
+                  /{{.per_unit}}
+                </span>
+              </div>
+              <p class="mt-5 text-lg leading-7 text-white">
+                {{- .description -}}
+              </p>
+            </div>
+
+            <div class="px-6 pt-6 pb-8 bg-gray-50 sm:p-10 sm:pt-6">
+              <ul>
+                {{range $index,$value := .features}}
+                <li class="{{if gt $index 0}}mt-4{{end}} flex items-start">
+                  <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p class="ml-3 text-base leading-6 text-gray-700">
+                    {{.}}
+                  </p>
+                </li>
+                {{end}}
+              </ul>
+              {{with .button}}
+              <div class="mt-6 rounded-md shadow">
+                <a href="{{.url}}" class="
+                {{$bg}} hover:bg-gray-800
+                {{range  last 1 (where $shadeable `value` `in` $color)}}
+                hover:bg-{{$color}}-{{$hover}} 
+                {{end}}
+                {{range  last 1 (where $themeable `value` `in` $color)}}
+                hover:bg-{{$color}}-90
+                {{end}}
+                flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white focus:outline-none focus:shadow-outline transition duration-150 ease-in-out" 
+                aria-describedby="tier-standard">
+                  {{.cta}}
+                </a>
+              </div>
+              {{end}}
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+    {{with .extra}}
+    <div class="mt-4 relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 lg:mt-5">
+      <div class="max-w-md mx-auto lg:max-w-5xl">
+        <div class="rounded-lg bg-gray-100 px-6 py-8 sm:p-10 lg:flex lg:items-center">
+          <div class="flex-1">
+            <div>
+              <h3 class="inline-flex px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase bg-white text-gray-800">
+                {{.title}}
+              </h3>
+            </div>
+            <div class="mt-4 text-lg leading-7 text-gray-600">
+              {{.description}}
+              <strong class="font-semibold text-gray-900">
+                {{.currency}}{{.amount}}
+              </strong>
+              .
+            </div>
+          </div>
+          <div class="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
+            <a href="{{.url}}" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-gray-900 bg-white hover:text-gray-700 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+              {{.cta}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{end}}
+  </div>
+</div>

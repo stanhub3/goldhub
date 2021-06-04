@@ -1,0 +1,98 @@
+{{- $author := .Site.Author -}}
+{{- $related := .Site.RegularPages.RelatedIndices . "tags" "categories" | first 5 -}}
+{{- $scratch := newScratch -}}
+
+{{- if eq .Type "products" -}}
+{{- $scratch.Set "type" "Product" -}}
+{{- else}}
+{{- $scratch.Set "type" "Post" -}}
+{{- end -}}
+
+{{- $singular := $scratch.Get "type" -}}
+
+{{- if gt (len $related) 0 -}}
+{{- $scratch.Add "type" "s" -}}
+{{- end -}}
+
+{{- $plural := $scratch.Get "type" -}}
+
+{{- with $related -}}
+<div class="bg-light pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+  <div class="relative max-w-lg  sm:max-w-xl lg:max-w-5xl lg:px-5 md:max-w-3xl mx-auto">
+    <div>
+      <h2 class="text-3xl leading-9 tracking-tight font-extrabold text-primary sm:text-4xl sm:leading-10">
+        Related  {{$plural}}
+      </h2>
+      <p class="mt-3 text-xl leading-7 font-extrabold text-neutral sm:mt-4">
+        You Might Find the Following {{$plural}} Worth Checking Out Since You've Viewed This {{$singular}}
+      </p>
+    </div>
+    <div class="mt-12 grid gap-16 border-t-4 border-brand border-opacity-25 border-dotted pt-12 lg:grid-cols-3 lg:col-gap-5 lg:row-gap-12">
+      {{ range . -}}
+      <div>
+        {{- with .Params.Categories -}}
+        <div>
+          <a href="#" class="inline-block">
+            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-brand bg-opacity-50 text-tag">
+              {{- . -}}
+            </span>
+          </a>
+        </div>
+        {{- end -}}
+        <a href="{{ .RelPermalink }}" class="block">
+          <h3 class="mt-4 text-xl leading-7 font-semibold text-primary">
+            {{.Title}}
+          </h3>
+          <p class="mt-3 text-base leading-6 text-neutral">
+            {{.Summary | truncate 200}}
+          </p>
+        </a>
+        <div class="mt-6 flex items-center">
+          <div class="flex-shrink-0">
+            <a href="#">
+                {{ if (and ( (isset $author "avatar") ) ( not (eq $author.avatar "" )) ) -}}
+                <img class="h-10 w-10 rounded-full" src="{{$author.avatar}}">
+                {{else}}
+                {{- $names := split $author.name " " -}}
+                <span class="bg-brand inline-flex items-center justify-center h-10 w-10 rounded-full">
+                    <span class="font-medium leading-none text-white">
+                        {{- if gt (len $names) 1 -}}
+                        {{- range first 1 $names -}}{{substr . 0 1}}{{end}}{{range last 1 $names}}{{substr . 0 1}}{{- end -}}
+                        {{- else -}}
+                        {{ slicestr (index $names 0) 0 1 }}
+                        {{- end -}}
+                    </span>
+                </span>
+                {{- end}}
+            </a>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm leading-5 font-medium text-brand">
+              <a href="#">
+               {{- $author.name -}}
+              </a>
+            </p>
+            <div class="flex text-sm leading-5 text-gray-500">
+              <time datetime="{{ .PublishDate.Format `2006-01-02` }}">
+                {{ .PublishDate.Format "January 2, 2006" }}
+              </time>
+              <span class="mx-1">
+                &middot;
+              </span>
+              <span>
+                {{if gt .ReadingTime 1}} 
+                {{- .ReadingTime -}} mins
+                {{else}}
+                {{- .ReadingTime -}}
+                min
+                {{- end}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{end -}}
+    </div>
+  </div>
+</div>
+{{- end -}}

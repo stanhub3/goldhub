@@ -1,0 +1,43 @@
+<div class="relative max-h-96 w-full">
+<div class="absolute inset-0 h-96 w-full">
+    <div class="h-96
+    flex flex-wrap items-center justify-center
+    bg-cool-gray-900
+    bg-opacity-80
+    ">
+    <div class="
+    {{- if gt ( $.Title | countwords) 21 -}} 
+    text-4xl xl:text-6xl lg:text-5xl font-bold
+    {{else}}
+    text-6xl font-extrabold
+    {{end}}
+    ">
+    <h1 class="text-center 
+    {{- $scratch := newScratch -}}
+    {{- if isset .Params "cover_photo" -}}
+    {{$scratch.Set "coverphoto" .Params.cover_photo}}
+    {{ else }}
+    {{$scratch.Set "coverphoto" .Site.Params.cover_photo}}
+    {{- end -}}
+    {{- $coverphoto := $scratch.Get "coverphoto" -}}
+    {{- with $coverphoto.color -}}text-{{.}}{{with $coverphoto.shade}}-{{.}}{{end}}{{end}}
+    {{with $coverphoto.font}}font-{{.}}{{end}}
+    ">
+         {{- $.Title -}}
+        </h1>
+        </div>
+    </div>
+</div>
+{{- with $.Page.Params.featured_image -}}
+    {{$url := urls.Parse .}}
+    {{- if $url.Scheme -}}
+    <img class="h-96 object-cover w-full" src="{{.}}">
+    {{- else -}}
+    <img class="h-96 object-cover w-full" src="{{. | relURL}}">
+    {{- end -}}
+{{- else -}}
+<div class="box-border h-96 w-full p-4 border-4 border-cool-gray-400 bg-cool-gray-200">
+  <div class="h-full w-full bg-cool-gray-400"></div>
+</div>
+{{- end -}}
+</div>

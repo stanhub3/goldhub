@@ -1,0 +1,49 @@
+  <div class="max-w-screen-xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+    <article class="prose prose-sm sm:prose-md md:prose-lg  lg:prose-2xl mx-auto px-5 sm:px-0">
+    {{- .Content -}}
+    </article>
+      {{- $scratch := newScratch -}}
+      {{- $key :=  $scratch.Set "faqs" 0 -}}
+      <div class="mt-6 border-t-2 pt-6 border-cool-gray-200">
+        <dl>
+        {{- range .Pages.ByParam "order" -}}
+            <div x-data="{faq_item_{{$key}}: false}" class="py-5">
+                <dt class="text-lg leading-7">
+                    <button
+                    @click="faq_item_{{$key}} = !faq_item_{{$key}}"
+                    class="text-left w-full flex justify-between items-start text-gray-400 focus:outline-none focus:text-primary-darker"
+                    >
+                    <span class="font-medium text-primary-darker">
+                        {{.Title}}
+                    </span>
+                    <span class="ml-6 h-7 flex items-center">
+                        <svg
+                        x-bind:class="{ '-rotate-180': faq_item_{{$key}}, 'rotate-0': !faq_item_{{$key}}}"
+                        class="h-6 w-6 transform"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                        />
+                        </svg>
+                    </span>
+                    </button>
+                </dt>
+                <dd class="mt-2 pr-12" x-show="faq_item_{{$key}}">
+                    <div class="text-base leading-6 text-gray-500">
+                    {{.Content}}
+                    </div>
+                </dd>
+                </div>
+          {{- $scratch.Add "faqs" 1 -}}
+          {{- end -}}
+        </dl>
+      </div>
+    </div>
+  </div>

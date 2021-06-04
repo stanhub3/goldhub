@@ -1,0 +1,36 @@
+{{/* NOTE! Use .Page.Params to Access Specific Data Of The Page */}}
+{{$mobiles := $.Page.Params.mobiles}}
+<div class="lg:grid lg:grid-cols-3 lg:gap-8">
+  {{ with $mobiles.title }}
+  <h2
+    class="text-2xl leading-8 font-extrabold text-primary sm:text-3xl sm:leading-9"
+  >
+    {{ . }}
+  </h2>
+  {{end}}
+  <div
+    class="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:col-gap-8 sm:row-gap-12 lg:mt-0 lg:col-span-2"
+  >
+    {{ range $mobiles.mobiles }}
+    <div>
+      {{if .name}}
+      <h4 class="text-lg leading-6 font-medium text-brand">
+        {{ .name }}
+      </h4>
+      {{end}} 
+      {{if .mobile}}
+      <dl class="mt-2 text-base leading-6">
+        <div class="mt-1">
+          <dt class="sr-only">Phone number</dt>
+          <dl>
+            <a href="tel:{{.mobile}}" class="text-primary-darker"
+              >{{ .mobile }}</a
+            >
+          </dl>
+        </div>
+      </dl>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+</div>

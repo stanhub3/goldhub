@@ -1,0 +1,77 @@
+{{- $bg := "" -}}
+{{- with .bg.color -}}
+{{- $bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .bg.shade}}
+{{- $bg = (printf "%v%v%v" $bg "-" .) -}}
+{{- end -}}
+
+{{- $card_bg := "" -}}
+{{- with .card_bg.color -}}
+{{- $card_bg = (printf "%v%v" "bg-" .) -}}
+{{- end -}}
+{{with .card_bg.shade}}
+{{- $card_bg = (printf "%v%v%v" $card_bg "-" .) -}}
+{{- end -}}
+
+{{- $name_text := "" -}}
+{{- with .name_text.color -}}
+{{- $name_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .name_text.shade}}
+{{- $name_text = (printf "%v%v%v" $name_text "-" .) -}}
+{{- end -}}
+
+{{- $title_text := "" -}}
+{{- with .title_text.color -}}
+{{- $title_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{with .title_text.shade}}
+{{- $title_text = (printf "%v%v%v" $title_text "-" .) -}}
+{{- end -}}
+
+{{- $role_text := "" -}}
+{{- with .role_text.color -}}
+{{- $role_text = (printf "%v%v" "text-" .) -}}
+{{- end -}}
+{{- with .role_text.shade -}}
+{{- $role_text = (printf "%v%v%v" $role_text "-" .) -}}
+{{- end -}}
+
+
+{{$teams := .members}}
+<div class="{{$bg}}">
+  <div class="mx-auto py-12 px-4 max-w-screen-xl sm:px-6 lg:px-8 lg:py-24">
+    <div class="space-y-12">
+      <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+        <h2 class="text-3xl leading-9 font-extrabold {{$title_text}} tracking-tight sm:text-4xl">{{.title}}</h2>
+        <p class="text-xl leading-7 {{$title_text}}">{{.subtitle}}</p>
+      </div>
+      <ul class="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
+        {{ range $index,$team := $teams }}
+        <li class="py-10 px-6 {{$card_bg}} text-center rounded-lg xl:px-10 xl:text-left">
+          <div class="space-y-6 xl:space-y-10">
+            <img class="mx-auto h-40 w-40 rounded-full object-cover xl:w-56 xl:h-56" src="{{$team.image.url|relURL}}" alt="">
+            <div class="space-y-2 xl:flex xl:items-center xl:justify-between">
+              <div class="font-medium text-lg leading-6 space-y-1">
+                <h4 class="{{$name_text}}">{{$team.name}}</h4>
+                <p class="{{$role_text}}">{{$team.role.name}}</p>
+              </div>
+                <ul class="flex justify-center space-x-5">
+                {{- range $team.links -}}
+                    <li>
+                    <a href="{{.link}}">
+                    <span class="sr-only">{{upper .type }}</span>
+                    <img class="h-6 w-6" src="{{.icon|relURL}}">
+                    </a>
+                    </li>
+                {{- end -}}
+                </ul>
+            </div>
+          </div>
+        </li>
+        {{end}}
+      </ul>
+    </div>
+  </div>
+</div>

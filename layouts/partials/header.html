@@ -1,0 +1,182 @@
+<nav class="shadow bg-navbar">
+  <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex px-2 lg:px-0">
+        {{/* <!-- Logo --> */}}
+        <div class="flex-shrink-0 flex items-center">
+          {{ with $.Site.Params.logo}}<img class="block mr-0 {{if eq $.Site.Params.brand.enable true}}md:mr-10{{end}} h-{{.height}} w-auto" src="{{.image}}" alt="{{$.Site.Params.brand.name}}">{{end -}}
+          {{if $.Site.Params.brand.enable}}
+          {{- if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.name "qwigley") }}
+          <h1 class="-mb-9 z-10 hidden md:block max-h-48 w-auto {{with $.Site.Params.brand.font.name}}font-{{.}}{{end}} font-light text-6xl relative text-brand mr-5 md:mr-10">
+          {{else if or (eq $.Site.Params.brand.font.name "sans") (eq $.Site.Params.brand.font.name "steel")}}
+          <h1 class="hidden md:block max-h-48 w-auto {{with $.Site.Params.brand.font.name}}font-{{.}}{{end}} font-extrabold text-5xl relative text-brand mr-5 md:mr-10">
+          {{- end -}}
+              {{- $.Site.Params.brand.name -}}
+              {{ if eq $.Site.Params.brand.font.name "aguafina"}}
+              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 mb-15 ml-2 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
+              {{ else if eq $.Site.Params.brand.font.name "qwigley"}}
+              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 -mr-10 mt-2 text-base">{{$.Site.Params.brand.tag}}</span>
+              {{else}}
+              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0  -ml-1 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
+              {{- end -}}
+          </h1>
+          {{end}}
+        </div>
+        {{/* <!-- Navigation Menu --> */ -}}
+        <div class="hidden lg:ml-6 lg:flex">
+          {{ range .Site.Menus.main -}} 
+          {{- $url := .URL | relLangURL -}} 
+          {{- with .Page -}} {{- $url = .RelPermalink -}} 
+          {{- end -}}
+          <a href="{{.URL}}" class="ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5  focus:outline-none transition duration-150 ease-in-out
+          {{- if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) }}
+          border-b-4 
+          text-navbar-active
+          border-brand
+          hover:text-navbar-hover
+          hover:border-tag
+          {{else}}
+          border-b-4
+          text-navbar-inactive
+          border-transparent
+          hover:text-navbar-hover
+          hover:border-navbar-border
+          {{ end -}}
+          ">
+            {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
+          </a>
+          {{- end -}}
+        </div>
+      </div>
+      {{/* <!-- Search Query Input --> */ -}}
+      {{ if $.Page.Params.showsearch -}}
+      <div class="flex-1 flex items-center justify-center px-2 {{if $.Site.Params.brand.enable}}lg:ml-6{{end}} lg:justify-end">
+        <div class="max-w-lg w-full lg:max-w-xs">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input x-model="searchQuery" x-on:input.debounce.750ms="executeSearch()" id="search" class="block w-full pl-10 pr-3 py-2 border border-neutral rounded-md leading-5  placeholder-neutral focus:outline-none focus:placeholder-primary focus:border-primary focus:shadow-outline-primary text-primary sm:text-sm transition duration-150 ease-in-out" placeholder="Search" type="search">
+        </div>
+        </div>
+      </div>
+      {{- end -}}
+        {{/* <!-- Shopping Cart Menu --> */}}
+      {{- if $.Page.Params.showcart -}}
+      {{ with .Site.Data.cart }}
+      <button x-cloak @click="cartOpen = !cartOpen" x-show="!cartOpen" class="text-sm border-transparent focus:outline-none transition duration-150 ease-in-out" id="cart-menu" aria-label="Cart menu" aria-haspopup="true">
+      <div slot="icon" class="relative">
+          <div
+            x-text="cart.length"
+            class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-cart-bubble text-cart-count">
+          </div>
+          <svg
+            class="stroke-current text-cart inline-block h-8 w-8"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="8" cy="21" r="2"></circle>
+            <circle cx="20" cy="21" r="2"></circle>
+            <path
+              d="M5.67 6H23l-1.68 8.39a2 2 0 0 1-2 1.61H8.75a2 2 0 0 1-2-1.74L5.23 2.74A2 2 0 0 0 3.25 1H1">
+            </path>
+            </svg>
+        </div>
+        </button>
+        {{- end -}}
+        {{- end -}}
+      {{/* <!-- List of Mobile Menus --> */}}
+      <div class="flex items-center lg:hidden">
+        {{/* <!-- Menu For Toggling NavBar --> */ -}}
+        <button @click="menu=!menu" class="ml-2 inline-flex items-center justify-center p-2 rounded-md text-neutral focus:outline-none transition duration-150 ease-in-out" aria-label="Main menu" aria-haspopup="true">
+          <svg :class="{'hidden': menu, 'block': !menu}" class="block h-6 w-6 text-tag" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg :class="{'block': menu, 'hidden': !menu}" class="hidden h-10 w-10 text-close" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  {{/* <!-- Mobile Dropdown --> */ -}}
+  <div class="hidden lg:hidden"
+    x-show="menu"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 transform scale-95"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100"
+    x-transition:leave-end="opacity-0 transform scale-95"
+    @click.away="menu = false"
+    :class="{'hidden': !menu, 'block': menu}"
+    >
+    <div class="pt-2 pb-3">
+      {{- range .Site.Menus.main -}} 
+      {{- $url := .URL | relLangURL -}} 
+      {{- with .Page -}} 
+      {{- $url = .RelPermalink -}} 
+      {{- end -}}
+      <a
+        href="{{.URL}}"
+        class="mt-1 block pl-3 pr-4 py-2 text-sm font-medium leading-5  focus:outline-none  transition duration-150 ease-in-out
+        {{- if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) }}
+        border-l-4
+        text-navbar-active
+        border-brand
+        hover:text-navbar-hover
+        hover:border-tag
+        {{else}}
+        border-l-4
+        text-navbar-inactive
+        border-transparent
+        hover:text-navbar-hover
+        hover:border-tag
+        {{- end }}">
+      {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML }}
+      </a>
+      {{ end -}}
+    </div>
+  </div>
+  {{/* <!-- Search Results --> */}}
+  {{- if $.Page.Params.showsearch -}}
+  <div class="hidden bg-light border-b-4 border-dotted border-primary"
+    @click.away="searchQuery = ''; searchResults = [];"
+    x-show="searchResults.length >0"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 transform scale-95"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100"
+    x-transition:leave-end="opacity-0 transform scale-95"
+    :class="{'hidden': searchResults.length < 1, 'block': searchResults.length >0}"
+    >
+    <template x-for="item in searchResults" :key="item">
+        <div  class="relative flex max-w-7xl mx-auto px-0  md:px-10 items-center">
+        <a :href="item.permalink" class="z-10 w-full p-1 sm:p-1 md:p-3 flex rounded-lg hover:bg-gray-100 transition ease-in-out duration-150 space-x-2 md:space-x-8">
+        <div class="hidden sm:block flex-shrink-0">
+            <img x-show="item.image" class="w-32 h-20 object-cover rounded-md" :src="item.image"/>
+            <div x-show="!item.image" class="box-border -mx-2 h-20 w-32 p-2 border-2 border-gray-400 bg-gray-200">
+            <div class="h-full w-full bg-gray-400"></div>
+            </div>
+        </div>
+        <div class="space-y-1 min-w-0 flex-1">
+        <h4 class="text-left font-semibold text-xl leading-6 truncate text-primary" x-text="item.title">
+        </h4>
+        <p class="break-all text-left text-sm font-medium text-gray-700" x-text="item.description">
+        </p>
+        <p class="break-all text-left text-sm font-normal text-gray-500" x-text="item.summary.substr(0,200)">
+        </p>
+        </div>
+        </a>
+       </div>
+    </template>
+    </div>
+    {{- end}}
+</nav>

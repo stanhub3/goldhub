@@ -1,0 +1,52 @@
+<div class="relative bg-white">
+  {{with .image}}
+  <div class="h-56 bg-indigo-600 sm:h-72 lg:absolute lg:left-0 lg:h-full lg:w-1/2">
+    <img class="w-full h-full object-cover" src="{{.url}}" alt="{{.alt}}">
+  </div>
+  {{end}}
+  <div class="relative max-w-screen-xl mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:py-16">
+    <div class="max-w-2xl mx-auto lg:max-w-none lg:mr-0 lg:ml-auto lg:w-1/2 lg:pl-10">
+      {{with .icon}}
+      <div>
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <img clas="h-6 w-6" src="{{.image}}" alt="{{.alt}}">
+        </div>
+      </div>
+      {{end}}
+      <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+       {{- .header -}}
+      </h2>
+      <p class="mt-6 text-lg leading-7 text-gray-500">
+      {{- .description -}}
+      </p>
+      <div class="mt-8 overflow-hidden">
+        <dl class="-mx-8 -mt-8 flex flex-wrap">
+          <div class="flex flex-col px-8 pt-8">
+            <dt class="order-2 text-base leading-6 font-medium text-gray-500">
+              {{.left.name}}
+            </dt>
+            <dd class="order-1 text-2xl leading-8 font-extrabold text-brand sm:text-3xl sm:leading-9">
+              {{.left.stat}}
+            </dd>
+          </div>
+          <div class="flex flex-col px-8 pt-8">
+            <dt class="order-2 text-base leading-6 font-medium text-gray-500">
+              {{.center.name}}
+            </dt>
+            <dd class="order-1 text-2xl leading-8 font-extrabold text-brand sm:text-3xl sm:leading-9">
+              {{.center.stat}}
+            </dd>
+          </div>
+          <div class="flex flex-col px-8 pt-8">
+            <dt class="order-2 text-base leading-6 font-medium text-gray-500">
+              {{.right.name}}
+            </dt>
+            <dd class="order-1 text-2xl leading-8 font-extrabold text-brand sm:text-3xl sm:leading-9">
+              {{.right.stat}}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
