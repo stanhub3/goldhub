@@ -6,9 +6,9 @@ data:
   contact_agree: false
 showcart: true
 showsearch: true
-title: Customer Support
-description: If You Need Custom Solutions To Your Site, That is Not Included
-  Here By Default You Can Contact Us.
+title: Contact Us
+description: If you are in need to get in touch with us, we are happy to reply.
+  Create a New Message below.
 featured_image: /images/support-banner.jpeg
 cover_photo:
   color: white
@@ -66,7 +66,7 @@ form:
       validation:
         required: true
       tag: textarea
-      placeholder: How Many Order Of Product X Can I  Get Wholesale Price?
+      placeholder: Type Your Questions Here...
 slug: support
 sections:
   - template: contact/form
