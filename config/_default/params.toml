@@ -1,36 +1,36 @@
 github_user = "goldcoders"
+favicon = "/images/logo.png"
 mainSections = ["blog", "products"]
-copyright = "Copyright © 2020, Thriftshop Site, all rights reserved."
+copyright = "Copyright © 2020, Pitlord INC., all rights reserved."
 github_banner = true
 github_repo = "https://github.com/thrift-shop-site/theme"
-favicon = "/images/logo.png"
 description = "The Most Affordable Ecommerce Site For Filipino Online Seller Startups"
 
 [gtm]
 enable = false
 id = ""
 
-[crispchat]
-id = ""
-enable = false
-
 [logo]
 image = "/images/logo.png"
 height = "14"
 
 [brand]
-enable = true
-name = "Thriftshop"
-tag = "SITE"
+enable = false
+name = "PITLORD"
+tag = "INC."
 
 [brand.font]
-name = "aguafina"
+name = "steel"
 tag = "steel"
 
 [cover_photo]
 color = "white"
 shade = ""
-font = "aguafina"
+font = "steel"
+
+[crispchat]
+id = ""
+enable = false
 
 [placeholder]
 cover_photo = "https://cdn.pixabay.com/photo/2015/03/26/09/40/business-suit-690048_960_720.jpg"
