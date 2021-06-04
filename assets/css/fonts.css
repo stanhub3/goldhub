@@ -1,0 +1,27 @@
+{{ if .Site.IsServer }}
+{{ if or (eq $.Site.Params.brand.font.name "qwigley") (eq $.Site.Params.brand.font.tag "qwigley")}}
+@font-face {
+  font-family: "Qwigley";
+  src: url("../fonts/qwigley/Qwigley-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+{{ end }}
+{{ if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.tag "aguafina")}}
+@font-face {
+  font-family: "Aguafina Script";
+  src: url("../fonts/Aguafina/AguafinaScript-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+{{ end }}
+{{ end }}
+
+{{ if or (eq $.Site.Params.brand.font.name "steel") (eq $.Site.Params.brand.font.tag "steel")}}
+@font-face {
+  font-family: "Steelfish";
+  src: url("../fonts/steelfib.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+{{ end }}
