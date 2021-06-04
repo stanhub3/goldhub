@@ -1,7 +1,7 @@
 ---
 index: true
 data: {}
-draft: false
+draft: true
 showcart: true
 showsearch: true
 showpagination: true
