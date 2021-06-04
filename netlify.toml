@@ -1,7 +1,7 @@
 [build]
   publish = "public"
   functions = "functions"
-  command = "hugo serve --gc --minify -b $HUGO_BASEURL"
+  command = "hugo --gc --minify -b $HUGO_BASEURL"
 # command: ntl dev
 [dev]
 command = "hugo serve --disableFastRender"
