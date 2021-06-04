@@ -1,12 +1,12 @@
 ---
 index: false
 draft: false
-date: 2020-08-05
+date: 2021-06-04T20:49:51.386Z
 showcart: true
 showsearch: true
 title: Privacy Policy
 slug: privacy
-description: Learn About Our Privacy Policy
+description: Pitlords INC. - Privacy Policy
 featured_image: /images/privacy-banner.jpg
 keywords:
   - privacy
@@ -32,12 +32,11 @@ For the purposes of this Privacy Policy:
 
 - **You** means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to **My Company Name**, Residing at This Business Address.
-G
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to **Pitlord INC.**
 - **Affiliate** means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
 - **Account** means a unique account created for You to access our Service or parts of our Service.
-- **Website** refers to Thrift Shop, accessible from **https://example.com**
-- **Service** refers to the Website.
+- **Website** refers to Pitlords, accessible from **https://pitlords.com**
+- **Service** refers to the Website/App.
 - **Country** refers to: Philippines
 - **Service Provider** means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.
 
@@ -155,7 +154,7 @@ The Company may disclose Your Personal Data in the good faith belief that such a
 The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.
 
 ### Children's Privacy
-Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
+Our Service does not address anyone under the age of 21. We do not knowingly collect personally identifiable information from anyone under the age of 21. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
 
 If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.
 
@@ -174,4 +173,4 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 ### Contact Us
 If you have any questions about this Privacy Policy, You can contact us:
 
-- By email: support@mycompany.com
+- By email: support@pitlords.com

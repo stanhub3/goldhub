@@ -1,7 +1,7 @@
 ---
 index: false
 draft: false
-date: 2020-08-05T07:03:27.222Z
+date: 2021-06-04T20:49:24.439Z
 showcart: true
 showsearch: true
 title: Disclaimer
@@ -29,9 +29,9 @@ The following definitions shall have the same meaning regardless of whether they
 
 For the purposes of this Disclaimer:
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Cookies Policy) refers to **My Company Name**, Residing At This Business Address
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Cookies Policy) refers to **Pitlord INC.**, 
 - **You** means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
-- **Website** refers to **https://example.com** (**My Website Name**).
+- **Website** refers to **Pitlords**, accessible from pitlords.com.
 - **Service** refers to the Website.
 
 ### Disclaimer
@@ -86,4 +86,4 @@ The Company will not be liable to You or anyone else for any decision made or ac
 
 If you have any questions about this Disclaimer, You can contact Us:
 
-By email: support@example.com
+By email: support@pitlords.com

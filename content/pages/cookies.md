@@ -1,7 +1,7 @@
 ---
 index: false
 draft: false
-date: 2020-08-05T06:59:16.942Z
+date: 2021-06-04T20:49:18.423Z
 showcart: true
 showsearch: true
 title: Cookies
@@ -33,10 +33,10 @@ The following definitions shall have the same meaning regardless of whether they
 
 For the purposes of this Cookies Policy:
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Cookies Policy) refers to **My Company Name**, Residing at This Business Address.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Cookies Policy) refers to **Pitlord INC.**
 - **You** means the individual accessing or using the Website, or a company, or any legal entity on behalf of which such individual is accessing or using the Website, as applicable.
 - **Cookies** means small files that are placed on Your computer, mobile device or any other device by a website, containing details of your browsing history on that website among its many uses.
-- **Website** refers to **My Company Name**, accessible from mycompany.com.
+- **Website** refers to **Pitlords**, accessible from pitlords.com.
 ### The use of the Cookies
 
 ##### **Type of Cookies We Use**
@@ -79,4 +79,4 @@ You can learn more about cookies in the "What Are Cookies" article.
 ### Contact Us
 If you have any questions about this Cookies Policy, You can contact us:
 
-By email: support@mycompany.com
+By email: support@pitlords.com
