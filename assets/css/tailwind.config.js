@@ -22,19 +22,6 @@ module.exports = {
         ],
     },
     theme: {
-        aspectRatio: {
-            none: 0,
-            "1": [1, 1],
-            "1/2": [2, 1],
-            "1/3": [3, 1],
-            "1/4": [4, 1],
-            "1/5": [5, 1],
-            "1/6": [6, 1],
-            "1/12": [12, 1],
-            "16/9": [16, 9],
-            "4/3": [4, 3],
-            "21/9": [21, 9],
-        },
         inset: {
             '0': 0,
             '1/2': '50%',
@@ -124,7 +111,7 @@ module.exports = {
     plugins: [
         require("@tailwindcss/ui"),
         require("tailwindcss-responsive-embed"),
-        require("tailwindcss-aspect-ratio"),
+        require("@tailwindcss/aspect-ratio"),
         require('@tailwindcss/typography'),
     ],
 };
