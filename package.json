@@ -23,7 +23,7 @@
         "local": "run-p cms-git cms-dev hugo"
     },
     "resolutions": {
-    "node-forge": "0.10.0"
+        "node-forge": "0.10.0"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^2.1.2",
@@ -35,7 +35,6 @@
         "prettier-plugin-go-template": "0.0.4",
         "stylelint-config-recommended": "^3.0.0",
         "tailwindcss": "^1.9.3",
-        "tailwindcss-aspect-ratio": "^3.0.0",
         "tailwindcss-responsive-embed": "^1.0.0"
     },
     "browserslist": [
@@ -45,6 +44,7 @@
         "not dead"
     ],
     "dependencies": {
+        "@tailwindcss/aspect-ratio": "^0.2.1",
         "@tailwindcss/typography": "^0.2.0",
         "@tailwindcss/ui": "^0.6.2",
         "@types/node": "^14.11.5",

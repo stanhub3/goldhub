@@ -114,4 +114,23 @@ sections:
           name: COO / Co-Founder
         description: "In the business world, everyone is paid in two coins: cash and
           experience. Take the experience first; the cash will come later."
+  - bg:
+      shade: "500"
+      color: purple
+    dot:
+      color: purple
+      shade: "500"
+    text:
+      shade: "500"
+      color: purple
+    cta:
+      - text: Contact Us
+        url: /contact
+    title: Join Our Team
+    template: templates/cta/brand-panel.html
+    type: cta_brand_panel
+    image: /images/join-team.jpeg
+    description: >
+      We Are Currently Looking For Talented and Passionate Individual to Join
+      Our Team
 ---
