@@ -1,27 +1,22 @@
 ---
-draft: false
-showcontact: true
-index: true
 data:
   contact_agree: false
-showcart: true
+draft: false
+showcontact: true
 showsearch: true
-title: Contact Us
-description: If you are in need to get in touch with us, we are happy to reply.
-  Create a New Message below.
 featured_image: /images/support-banner.jpeg
 cover_photo:
   color: white
   shade: ""
   font: steel
 form:
-  action: "#"
+  action: https://docs.google.com/forms/d/19jC6VaqNM-S1Nzl5Pb8HxIxI5pIUNwnr20LgALn5WbE/prefill
   method: POST
   button:
     text: Submit
   recaptcha:
-    enable: false
-    siteKey: ""
+    enable: true
+    siteKey: 6Lca5xMbAAAAAGyKY7DU9RW8LcKjMGj7MHPgkNdZ
   agreement:
     enable: true
     text: I have read and agreed to
@@ -31,7 +26,7 @@ form:
       - name: cookie policy
         link: "#cookie"
   fields:
-    - name: entry.123
+    - name: entry.2005620554
       label: Name
       type: text
       value: name
@@ -39,9 +34,10 @@ form:
         required: true
         pattern: ^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
         title: Special Characters and Number Not Allowed.
+        minLength: ""
       tag: input
-      placeholder: Juan Dela Cruz
-    - name: emailAddress
+      placeholder: John Doe
+    - name: entry.1045781291
       label: Email
       type: email
       value: email
@@ -49,7 +45,7 @@ form:
         required: true
       tag: input
       placeholder: juandelacruz@gmail.com
-    - name: entry.234
+    - name: entry.1166974658
       label: Contact No.
       type: text
       value: mobile
@@ -59,7 +55,7 @@ form:
         title: Must Start With +639XXXXXXXXXX or 09XXXXXXXXXX
       tag: input
       placeholder: "+63915123456789"
-    - name: entry.345
+    - name: entry.839337160
       label: Message
       type: text
       value: message
@@ -72,6 +68,11 @@ sections:
   - template: contact/form
   - template: contact/mobiles
   - template: contact/locations
+index: true
+showcart: true
+title: Contact Us
+description: If you are in need to get in touch with us, we are happy to reply.
+  Create a New Message below.
 pick_up_locations:
   title: Pick Up Location
   locations: []
