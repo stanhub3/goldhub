@@ -30,7 +30,8 @@ sections:
     bglower:
       color: gray
       shade: "800"
-    description: We Listen To The Players, The Operators , And PAGCOR Guidelines.
+    description: |
+      > We Listen To The Players, The Operators , And Follow PAGCOR Guidelines.
     bgupper:
       color: gray
       shade: "50"
@@ -38,7 +39,7 @@ sections:
     template: templates/features/centered-2x2.html
     header: Pitlords Live
     tag: How We Are Different
-    description: Built From Ground Up , For the Players By the Players.
+    description: "> Built From Ground Up , For the Players By the Players."
     features:
       - title: Real Time
         description: Our Platform is 400 - 800 ms Latency   so Say Goodbye to System
