@@ -16,4 +16,4 @@ _build:
       list: true
 show: true
 ---
-Below FAQ are some common concerns of our clients before purchasing our products if you have other questions, email us at support@example.com or use our [contact page](/contact)
+Below FAQ are some common concerns of our players before playing in our platform if you have other questions, contact us at our [contact page](/contact)
