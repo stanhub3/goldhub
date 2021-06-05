@@ -1,8 +1,8 @@
 ---
 index: true
 draft: false
-showcart: true
-showsearch: true
+showcart: false
+showsearch: false
 title: Frequently Asked Questions
 slug: faq
 description: Frequestly Asked Question Page

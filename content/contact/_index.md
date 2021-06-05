@@ -3,7 +3,7 @@ data:
   contact_agree: false
 draft: false
 showcontact: true
-showsearch: true
+showsearch: false
 featured_image: /images/support-banner.jpeg
 cover_photo:
   color: white
@@ -69,7 +69,7 @@ sections:
   - template: contact/mobiles
   - template: contact/locations
 index: true
-showcart: true
+showcart: false
 title: Contact Us
 description: If you are in need to get in touch with us, we are happy to reply.
   Create a New Message below.
