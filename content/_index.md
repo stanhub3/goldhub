@@ -1,9 +1,14 @@
 ---
-showsearch: true
+title: Pitlords Live
+description: "Win Big with Pot Bonus , Get Top Up Rebates ,Get Extra credits
+  thru referral. "
+date: 2021-06-04T22:40:12.245Z
+showsearch: false
 data: {}
 author:
   name: Goldcoders
   avatar: https://avatars.dicebear.com/api/avataaars/richkid.svg
+showcart: false
 sections:
   - logos:
       enable: false
@@ -13,26 +18,51 @@ sections:
       col: 2
       images: []
     subheader: ""
-    header: "#1 Live Streaming Provider"
+    header: Online Casino App
     featured:
       url: /images/Banner Blog.png
       alt: Feature Image
     template: templates/hero/app-with-screenshot.html
     type: hero_app_with_screenshot
-    tag: For Live Betting Games
+    tag: Live Betting Games
     video:
       id: ""
     bglower:
       color: gray
       shade: "800"
-    description: "Our Company Will Revolutionize How Online Casino Operates. We Can
-      Host Any Betting Games with No Lag and Real Time Streaming.  Pro-Player
-      Platform  where you can Earn Points by Top Up and Referrals. Fast and
-      Secured Peer to Peer Transfer. A Jackpot That Can Grow to Millions For
-      Each Games. "
+    description: We Listen To The Players, The Operators , And PAGCOR Guidelines.
     bgupper:
       color: gray
       shade: "50"
+  - type: featured_centered_2x2
+    template: templates/features/centered-2x2.html
+    header: Pitlords Live
+    tag: How We Are Different
+    description: Built From Ground Up , For the Players By the Players.
+    features:
+      - title: Real Time
+        description: Our Platform is 400 - 800 ms Latency   so Say Goodbye to System
+          Abusers of Delayed Uploaded Fights Our Sytem is Cheat Free.
+        image: /images/live.svg
+      - title: Bigger Prizes
+        image: /images/prize.svg
+        description: Each New Bet Place On Every Games The Pot Bonus Increases. The More
+          You Play The Change You Hit The Pot Bonus!
+      - title: Cashback Rewards
+        description: We Want You To Play More By Giving you More. Earn Additional Coins
+          Every Top Up you Make.
+        image: /images/poker-chip.svg
+      - title: Referral Bonus
+        description: Why Not We Pay You to Help Us Become Bigger by Helping Us Promote
+          Our Company.
+        image: /images/affiliate-marketing-2.svg
+      - title: P2P Encashment
+        description: Scan QR Code , Ask and Receive Money Direct From your Registered
+          E-wallet or Bank App.
+        image: /images/qr-code.svg
+      - title: Fast Cashout
+        description: "Receive Your Encashment Within 24-48 hrs After Withdrawal. No Hassle "
+        image: /images/p2p.svg
   - type: team_short
     template: templates/teams/short.html
     title: Meet Our Team
@@ -83,8 +113,4 @@ sections:
           name: COO / Co-Founder
         description: "In the business world, everyone is paid in two coins: cash and
           experience. Take the experience first; the cash will come later."
-date: 2019-05-15
-title: Pitlords Live
-description: #1 Live Streaming Provider For Live Betting Games
-showcart: true
 ---
