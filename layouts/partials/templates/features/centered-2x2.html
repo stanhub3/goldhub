@@ -5,9 +5,9 @@
       <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-primary-darker sm:text-4xl sm:leading-10">
         {{.header}}
       </h3>
-      <p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
-        {{.description}}
-      </p>
+      <article class="prose prose-2xl mx-auto px-5 sm:px-0">
+        {{.description | markdownify}}
+      </article>
     </div>
 
     <div class="mt-10">
