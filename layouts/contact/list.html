@@ -37,7 +37,7 @@
 {{ if .Page.Params.showsearch }}
 <script src="/js/fuse.js" async defer></script>
 {{end}}
-{{if .Page.Params.form.recaptcha.enable}}
+{{ if and (eq .Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {{end}}
 {{end}}

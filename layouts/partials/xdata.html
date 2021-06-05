@@ -131,7 +131,7 @@
 
     {{- if $.Page.Params.showcontact -}}
 
-    {{- if $.Page.Params.form.recaptcha.enable -}}
+    {{- if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
     var onError = function captchaError() {
         window.captchaValid = false
         grecaptcha.reset();
@@ -170,7 +170,7 @@
                 }
                 {{ end }}
 
-                {{- if $.Page.Params.form.recaptcha.enable -}}
+                {{ if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
                 if(!window.captchaValid){
                     alert("Prove Your A Human and Answer reCaptcha!");
                     return;
@@ -221,11 +221,16 @@
                     }
                 }catch(error){
                     console.log(error)
+                    {{if eq $.Page.Params.form.method "GET"}}
+                    window.location.href = url;
+                    {{end}}
                 }
                     Object.keys(self.form).forEach(function(key) {
                     self.form[key] = "";
                 })
+                {{ if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
                 grecaptcha.reset();
+                {{end}}
             }// end submit
         } //end return
     }// end contanct

@@ -10,8 +10,8 @@ cover_photo:
   shade: ""
   font: steel
 form:
-  action: https://docs.google.com/forms/d/19jC6VaqNM-S1Nzl5Pb8HxIxI5pIUNwnr20LgALn5WbE/prefill
-  method: POST
+  action: https://docs.google.com/forms/u/0/d/e/1FAIpQLSchlzTLnER4aSRYY2PPMSK0q9KCQSCCcUafqtCzxZS9BI6Z3w/formResponse
+  method: GET
   button:
     text: Submit
   recaptcha:
@@ -37,7 +37,7 @@ form:
         minLength: ""
       tag: input
       placeholder: John Doe
-    - name: entry.1045781291
+    - name: emailAddress
       label: Email
       type: email
       value: email
