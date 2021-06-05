@@ -1,4 +1,5 @@
 <div
+  style="z-index: 999;"
   x-show="modal"
   x-cloak
   class="fixed md:px-4 md:pb-6 inset-0 p-0 flex items-center justify-center"
@@ -13,7 +14,7 @@
     x-transition:leave-end="opacity-0"
     class="fixed inset-0 transition-opacity"
   >
-    <div class="absolute inset-0 bg-default"></div>
+    <div class="absolute inset-0 bg-transparent"></div>
   </div>
 
   <div
@@ -25,11 +26,10 @@
     aria-modal="true"
     aria-labelledby="modal-headline"
   >
-    <div class="embed-responsive aspect-ratio-16/9">
+    <div class="aspect-w-16 aspect-h-9">
     <iframe 
     id="yt-video"
     x-ref="xvideo"
-    class="embed-responsive-item"
     frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
