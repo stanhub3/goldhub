@@ -4,11 +4,6 @@ name = "Home"
 weight = 1
 
 [[main]]
-URL = "/blog/"
-name = "Blog"
-weight = 3
-
-[[main]]
 URL = "/faq/"
 name = "FAQs"
 weight = 4
