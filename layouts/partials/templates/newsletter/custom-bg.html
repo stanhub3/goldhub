@@ -1,5 +1,5 @@
 {{$themeable := slice (dict "value" "brand") (dict "value" "primary") (dict "value" "primary-darker") (dict "value" "secondary") (dict "value" "accent") (dict "value" "success") (dict "value" "info") (dict "value" "warning") (dict "value" "error")}}
-{{$shadeable := slice (dict "value" "gray") (dict "value" "cool-gray") (dict "value" "red") (dict "value" "orange") (dict "value" "yellow") (dict "value" "green") (dict "value" "teal") (dict "value" "blue") (dict "value" "indigo") (dict "value" "purple") (dict "value" "pink")}}
+{{$shadeable := slice (dict "value" "gray") (dict "value" "blueGray") (dict "value" "coolGray") (dict "value" "trueGray") (dict "value" "warmGray") (dict "value" "red") (dict "value" "orange") (dict "value" "amber") (dict "value" "yellow") (dict "value" "lime") (dict "value" "green") (dict "value" "emerald") (dict "value" "teal") (dict "value" "cyan") (dict "value" "lightBlue") (dict "value" "blue") (dict "value" "indigo") (dict "value" "violet") (dict "value" "purple") (dict "value" "fuchsia") (dict "value" "pink") (dict "value" "rose")}}
 <div class="{{with .bg}}{{with .color}}bg-{{.}}{{end}}{{with .shade}}-{{.}}{{end}}{{end}}">
   <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center">
     <div class="lg:w-0 lg:flex-1">
