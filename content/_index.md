@@ -2,6 +2,7 @@
 title: Pitlords Live
 description: "Win Big with Pot Bonus , Get Top Up Rebates ,Get Extra credits
   thru referral. "
+featured_image: /images/Online Sabong.png
 date: 2021-06-04T22:40:12.245Z
 showsearch: false
 data: {}
