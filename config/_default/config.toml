@@ -37,3 +37,8 @@ disable = true
 homepage = "https://github.com/goldcoders"
 name = "Pitlord"
 avatar = "/images/avatar.svg"
+
+[build]
+noJSConfigInAssets = false
+useResourceCacheWhen = "fallback"
+writeStats = true
