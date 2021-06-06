@@ -1,25 +1,15 @@
-const themeDir = __dirname + "/../../";
-
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-module.exports = {
-    future: {
-        removeDeprecatedGapUtilities: true,
-    },
-    experimental: {
-        uniformColorPalette: true,
-        extendedFontSizeScale: true,
-        applyComplexClasses: true,
-    },
+const cfgTw = {
     purge: {
         content: [
-            themeDir + "layouts/**/*.html",
-            themeDir + "exampleSite/content/**/*.html",
-            themeDir + "exampleSite/public/**/*.html",
             "layouts/**/*.html",
             "content/**/*.html",
             "public/**/*.html",
         ],
+        options: {
+            safelist: ['do_not_purge_classes_'],
+        },
     },
     theme: {
         inset: {
@@ -109,9 +99,12 @@ module.exports = {
         aspectRatio: ["responsive"],
     },
     plugins: [
-        require("@tailwindcss/ui"),
-        require("tailwindcss-responsive-embed"),
         require("@tailwindcss/aspect-ratio"),
-        require('@tailwindcss/typography'),
+        require("@tailwindcss/typography"),
+        require("@tailwindcss/forms")
     ],
 };
+
+// 'production' !== process.env.NODE_ENV ? cfgTw.mode = 'jit' : null;
+
+module.exports = cfgTw;
