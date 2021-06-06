@@ -20,7 +20,7 @@ sections:
     subheader: ""
     header: Online Casino App
     featured:
-      url: /images/Banner Blog.png
+      url: /images/Online Sabong.png
       alt: Feature Image
     template: templates/hero/app-with-screenshot.html
     type: hero_app_with_screenshot
