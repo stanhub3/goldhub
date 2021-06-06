@@ -19,7 +19,7 @@ pages = "/:slug"
 disable = true
 
 [privacy.googleAnalytics]
-disable = true
+disable = false
 
 [privacy.instagram]
 disable = true
