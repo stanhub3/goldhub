@@ -98,7 +98,7 @@
     </div>
     {{- end -}}
     <div class="sm:col-span-2">
-     {{ if and (eq $form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
+     {{ if and ($form.recaptcha.enable) (ne $.Site.BaseURL "http://localhost:1313/") -}}
         <div  class="g-recaptcha w-full inline-flex" data-sitekey="{{ $form.recaptcha.siteKey }}" data-callback="onSuccess" data-expired-callback="onExpired" data-error-callback="onError"></div>
      {{- end -}}
       <span class="w-full inline-flex rounded-md shadow-sm">

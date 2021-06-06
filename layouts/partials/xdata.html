@@ -131,7 +131,7 @@
 
     {{- if $.Page.Params.showcontact -}}
 
-    {{- if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
+    {{- if and ($.Page.Params.form.recaptcha.enable) (ne $.Site.BaseURL "http://localhost:1313/") -}}
     var onError = function captchaError() {
         window.captchaValid = false
         grecaptcha.reset();
@@ -170,7 +170,7 @@
                 }
                 {{ end }}
 
-                {{ if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
+                {{ if and ($.Page.Params.form.recaptcha.enable) (ne $.Site.BaseURL "http://localhost:1313/") -}}
                 if(!window.captchaValid){
                     alert("Prove Your A Human and Answer reCaptcha!");
                     return;
@@ -228,7 +228,7 @@
                     Object.keys(self.form).forEach(function(key) {
                     self.form[key] = "";
                 })
-                {{ if and (eq $.Page.Params.form.recaptcha.enable "true") (ne $.Site.BaseURL "http://localhost:1313/") -}}
+                {{ if and ($.Page.Params.form.recaptcha.enable) (ne $.Site.BaseURL "http://localhost:1313/") -}}
                 grecaptcha.reset();
                 {{end}}
             }// end submit
