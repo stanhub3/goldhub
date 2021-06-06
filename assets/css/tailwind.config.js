@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const cfgTw = {
@@ -12,10 +14,12 @@ const cfgTw = {
         },
     },
     theme: {
+        colors:colors,
         inset: {
             '0': 0,
             '1/2': '50%',
         },
+        colors: colors,
         extend: {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
@@ -79,19 +83,6 @@ const cfgTw = {
                 'outline-warning': '0 0 0 1px theme("colors.warning")',
                 'outline-error': '0 0 0 1px theme("colors.error")',
                 'outline-neutral': '0 0 0 1px theme("colors.neutral")',
-            },
-            opacity: {
-                '0': '0',
-                '10': '.1',
-                '20': '0.2',
-                '30': '.3',
-                '40': '0.4',
-                '50': '0.5',
-                '60': '0.6',
-                '70': '0.7',
-                '80': '0.8',
-                '90': '0.9',
-                '100': '1',
             },
         }
     },
