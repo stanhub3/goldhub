@@ -1,5 +1,4 @@
 const colors = require('tailwindcss/colors');
-
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const cfgTw = {
@@ -14,11 +13,6 @@ const cfgTw = {
         },
     },
     theme: {
-        colors:colors,
-        inset: {
-            '0': 0,
-            '1/2': '50%',
-        },
         colors: colors,
         extend: {
             fontFamily: {
@@ -28,6 +22,8 @@ const cfgTw = {
                 'aguafina': ['Aguafina Script']
             },
             colors: {
+                transparent: 'transparent',
+                current: 'currentColor',
                 brand: 'var(--color-brand)',
                 'brand-75': 'var(--color-brand-75)',
                 'brand-90': 'var(--color-brand-90)',
