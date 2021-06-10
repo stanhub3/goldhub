@@ -1,6 +1,4 @@
 ---
-index: true
-title: " Pitlords Live"
 description: "Win Big with Pot Bonus , Get Top Up Rebates ,Get Extra credits
   thru referral. "
 featured_image: /images/Online Sabong.png
@@ -135,4 +133,6 @@ sections:
     description: >
       We Are Currently Looking For Talented and Passionate Individual to Join
       Our Team
+index: true
+title: " Pitlords Live , Online Sabong | Games | Bets Platform."
 ---
