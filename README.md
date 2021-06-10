@@ -11,4 +11,4 @@ Official Website Repository of Pitlord INC.
 
 ## Install CMS
 
--   [CMS](https://github.com/pitlords/cms)
+-   [CMS](https://github.com/goldcoders/hugofy)
