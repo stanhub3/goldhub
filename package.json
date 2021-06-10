@@ -9,6 +9,7 @@
     "scripts": {
         "tw-dev": "TAILWIND_MODE=watch NODE_ENV=development postcss ./assets/css/main.css -c ./assets/css/tailwind.config.js -o ./assets/css/tailwind.css -w",
         "hugo-dev": "hugo serve --disableFastRender",
+        "hugo-build" :"hugo --gc --minify",
         "netlify": "netlify dev",
         "lambda-serve": "netlify-lambda serve lambda",
         "lambda-build": "netlify-lambda build lambda",
