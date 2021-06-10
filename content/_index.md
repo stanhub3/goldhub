@@ -1,4 +1,5 @@
 ---
+index: true
 title: " Pitlords Live"
 description: "Win Big with Pot Bonus , Get Top Up Rebates ,Get Extra credits
   thru referral. "
