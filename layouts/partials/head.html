@@ -15,6 +15,7 @@
 <meta name="author" content="{{ .Params.Author}}" /> 
 {{- end -}}
 {{ partial "templates/_internal/opengraph.html" . }}
+<meta name=”robots” content=”index, follow”>
 {{/* For Local Dev Use Our Local Fonts */}}
 {{- if .Site.IsServer -}}
 <link rel="stylesheet" href="/fonts/inter/inter.css">
