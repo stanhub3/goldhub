@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+{{ range .Pages -}}
+{{ if .Draft }}
+Disallow: {{ .RelPermalink }}
+{{ end }}
+{{- end }}
