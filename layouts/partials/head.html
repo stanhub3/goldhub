@@ -21,16 +21,16 @@
 <link rel="stylesheet" href="/fonts/inter/inter.css">
 {{- else -}}
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-{{ if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.tag "aguafina")}}
+{{ if or (eq $.Site.Params.brand.font "aguafina") (eq $.Site.Params.tag.font "aguafina")}}
 <link href='https://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet'>
 {{ end }}
-{{ if or (eq $.Site.Params.brand.font.name "qwigley") (eq $.Site.Params.brand.font.tag "qwigley")}}
+{{ if or (eq $.Site.Params.brand.font "qwigley") (eq $.Site.Params.tag.font "qwigley")}}
 <link href='https://fonts.googleapis.com/css?family=Qwigley' rel='stylesheet'>
 {{ end }}
 {{- end -}}
 <link rel="shortcut icon" type="image/jpg" href="{{$.Site.Params.favicon | relURL}}"/>
 {{/* Load Brand Fonts If Given */}}
-{{ if or (ne $.Site.Params.brand.font.name nil) (ne $.Site.Params.brand.font.tag nil)}}
+{{ if or (ne $.Site.Params.brand.font nil) (ne $.Site.Params.tag.font nil)}}
 {{ $font_template := resources.Get "css/fonts.css" }} 
 {{- $fonts := $font_template | resources.ExecuteAsTemplate "fonts.css" . | resources.ToCSS -}}
 <link rel="stylesheet" href="{{ $fonts.RelPermalink }}" type="text/css"> 

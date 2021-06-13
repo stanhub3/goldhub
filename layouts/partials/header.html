@@ -4,22 +4,38 @@
       <div class="flex px-2 lg:px-0">
         {{/* <!-- Logo --> */}}
         <div class="flex-shrink-0 flex items-center">
-          {{ with $.Site.Params.logo}}<img class="block mr-0 {{if eq $.Site.Params.brand.enable true}}md:mr-10{{end}} h-{{.height}} w-auto" src="{{.image}}" alt="{{$.Site.Params.brand.name}}">{{end -}}
+          {{ with $.Site.Params.logo}}<img class="block mr-0 {{if eq $.Site.Params.brand.enable true}}md:mr-5{{end}} h-{{.height}} w-auto" src="{{.image}}" alt="{{$.Site.Params.brand.name}}">{{end -}}
           {{if $.Site.Params.brand.enable}}
-          {{- if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.name "qwigley") }}
-          <h1 class="-mb-9 z-10 hidden md:block max-h-48 w-auto {{with $.Site.Params.brand.font.name}}font-{{.}}{{end}} font-light text-6xl relative text-brand mr-5 md:mr-10">
-          {{else if or (eq $.Site.Params.brand.font.name "sans") (eq $.Site.Params.brand.font.name "steel")}}
-          <h1 class="hidden md:block max-h-48 w-auto {{with $.Site.Params.brand.font.name}}font-{{.}}{{end}} font-extrabold text-5xl relative text-brand mr-5 md:mr-10">
+          {{- if or (eq $.Site.Params.brand.font "aguafina") (eq $.Site.Params.brand.font "qwigley") }}
+          <h1 class="-mb-9 z-10 hidden md:block max-h-48 w-auto font-light text-6xl relative mr-5 md:mr-10
+          {{with $.Site.Params.brand.font}}font-{{.}}{{end}}
+          {{ with $.Site.Params.brand.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
+          ">
+          {{else if or (eq $.Site.Params.brand.font "sans") (eq $.Site.Params.brand.font "steel")}}
+          <h1 class="hidden md:block max-h-48 w-auto font-extrabold text-5xl relative mr-5 md:mr-10 uppercase
+          {{with $.Site.Params.brand.font}}font-{{.}}{{end}}
+          {{ with $.Site.Params.brand.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
+          ">
           {{- end -}}
               {{- $.Site.Params.brand.name -}}
-              {{ if eq $.Site.Params.brand.font.name "aguafina"}}
-              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 mb-15 ml-2 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
-              {{ else if eq $.Site.Params.brand.font.name "qwigley"}}
-              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline leading-10 absolute top-0 -mr-10 mt-2 text-base">{{$.Site.Params.brand.tag}}</span>
-              {{else if eq $.Site.Params.brand.font.name "sans"}}
-              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0 text-2xl mx-2">{{$.Site.Params.brand.tag}}</span>
+              {{ if eq $.Site.Params.brand.font "aguafina"}}
+              <span class="font-hairline leading-10 absolute top-0 mb-15 ml-2 text-2xl mx-2
+              font-{{ $.Site.Params.tag.font}} 
+              {{ with $.Site.Params.tag.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
+              ">{{$.Site.Params.brand.tag}}</span>
+              {{ else if eq $.Site.Params.brand.font "qwigley"}}
+              <span class="
+              font-{{ $.Site.Params.tag.font}} font-hairline leading-10 absolute top-0 -mr-10 mt-2 text-base">{{$.Site.Params.tag.name}}</span>
+              {{else if eq $.Site.Params.brand.font "sans"}}
+              <span class="font-hairline absolute top-0 text-2xl mx-2
+              font-{{ $.Site.Params.tag.font}}
+              {{ with $.Site.Params.tag.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
+              ">{{$.Site.Params.tag.name}}</span>
               {{else}}
-              <span class="text-tag font-{{ $.Site.Params.brand.font.tag}} font-hairline absolute top-0 mx-2">{{$.Site.Params.brand.tag}}</span>
+              <span class="font-hairline absolute top-0 mx-2 uppercase
+              font-{{ $.Site.Params.tag.font}}
+              {{ with $.Site.Params.tag.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
+               ">{{$.Site.Params.tag.name}}</span>
               {{- end -}}
           </h1>
           {{end}}
