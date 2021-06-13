@@ -1,5 +1,5 @@
 {{ if .Site.IsServer }}
-{{ if or (eq $.Site.Params.brand.font.name "qwigley") (eq $.Site.Params.brand.font.tag "qwigley")}}
+{{ if or (eq $.Site.Params.brand.font "qwigley") (eq $.Site.Params.tag.font "qwigley")}}
 @font-face {
   font-family: "Qwigley";
   src: url("../fonts/qwigley/Qwigley-Regular.ttf") format("truetype");
@@ -7,7 +7,7 @@
   font-style: normal;
 }
 {{ end }}
-{{ if or (eq $.Site.Params.brand.font.name "aguafina") (eq $.Site.Params.brand.font.tag "aguafina")}}
+{{ if or (eq $.Site.Params.brand.font "aguafina") (eq $.Site.Params.tag.font "aguafina")}}
 @font-face {
   font-family: "Aguafina Script";
   src: url("../fonts/Aguafina/AguafinaScript-Regular.ttf") format("truetype");
@@ -17,7 +17,7 @@
 {{ end }}
 {{ end }}
 
-{{ if or (eq $.Site.Params.brand.font.name "steel") (eq $.Site.Params.brand.font.tag "steel")}}
+{{ if or (eq $.Site.Params.brand.font "steel") (eq $.Site.Params.tag.font "steel")}}
 @font-face {
   font-family: "Steelfish";
   src: url("../fonts/steelfib.ttf") format("truetype");
