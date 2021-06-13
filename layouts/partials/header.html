@@ -27,12 +27,12 @@
               <span class="
               font-{{ $.Site.Params.tag.font}} font-hairline leading-10 absolute top-0 -mr-10 mt-2 text-base">{{$.Site.Params.tag.name}}</span>
               {{else if eq $.Site.Params.brand.font "sans"}}
-              <span class="font-hairline absolute top-0 text-2xl mx-2
+              <span class="font-hairline text-2xl
               font-{{ $.Site.Params.tag.font}}
               {{ with $.Site.Params.tag.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
               ">{{$.Site.Params.tag.name}}</span>
               {{else}}
-              <span class="font-hairline absolute top-0 mx-2 uppercase
+              <span class="font-hairline uppercase
               font-{{ $.Site.Params.tag.font}}
               {{ with $.Site.Params.tag.color -}}text-{{.}}{{with $.Site.Params.tag.shade}}-{{.}}{{end}}{{end -}}
                ">{{$.Site.Params.tag.name}}</span>
