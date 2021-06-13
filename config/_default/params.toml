@@ -15,13 +15,17 @@ image = "/images/logo.png"
 height = "14"
 
 [brand]
-enable = false
-name = "PITLORD"
-tag = "INC."
+enable = true
+name = "Goldcoders"
+font = "steel"
+color = "brand"
+shade = ""
 
-[brand.font]
-name = "steel"
-tag = "steel"
+[tag]
+name = "Dev"
+font = "steel"
+color = "white"
+shade = ""
 
 [cover_photo]
 color = "white"

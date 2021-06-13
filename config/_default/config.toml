@@ -1,12 +1,12 @@
 enableEmoji = true
 enableRobotsTXT = true
-title = "Pitlord INC."
-baseURL = "https://pitlords.com"
-googleAnalytics = ""
-disqusShortname = "pitlords"
+disqusShortname = "goldcoders"
 languageCode = "en-us"
-summaryLength = "10"
+title = "Goldcoders Corp."
+baseURL = "https://goldcoders.dev"
+googleAnalytics = ""
 paginate = 9
+summaryLength = "10"
 
 [permalinks]
 blogs = "/blog/:slug/"
@@ -35,7 +35,7 @@ disable = true
 
 [author]
 homepage = "https://github.com/goldcoders"
-name = "Pitlord"
+name = "Goldcoders"
 avatar = "/images/avatar.svg"
 
 [build]
