@@ -1,13 +1,14 @@
 ---
-description: "Win Big with Pot Bonus , Get Top Up Rebates ,Get Extra credits
-  thru referral. "
 featured_image: /images/Online Sabong.png
-date: 2021-06-04T22:40:12.245Z
 showsearch: false
 data: {}
 author:
   name: Goldcoders
   avatar: https://avatars.dicebear.com/api/avataaars/richkid.svg
+title: Custom Software and Application Development
+description: Let build your Next Big Thing App A Reality, We Help You Bring
+  Ideas to Reality.
+date: 2021-06-04T22:40:12.245Z
 showcart: false
 sections:
   - logos:
@@ -134,5 +135,4 @@ sections:
       We Are Currently Looking For Talented and Passionate Individual to Join
       Our Team
 index: true
-title: " Pitlords Live , Online Sabong | Games | Bets Platform."
 ---
