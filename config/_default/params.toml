@@ -1,7 +1,7 @@
 github_user = "goldcoders"
 favicon = "/images/logo.png"
 mainSections = ["blog", "products"]
-copyright = "Copyright © 2020, Pitlord INC., all rights reserved."
+copyright = "Copyright © 2020, GOLDCODERS CORP™️., all rights reserved."
 github_banner = true
 github_repo = "https://github.com/thrift-shop-site/theme"
 description = "The Most Affordable Ecommerce Site For Filipino Online Seller Startups"
