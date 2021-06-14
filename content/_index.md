@@ -19,52 +19,50 @@ sections:
       col: 2
       images: []
     subheader: ""
-    header: Online Casino App
+    header: Apps Built For Your Needs
     featured:
-      url: /images/Online Sabong.png
+      url: /images/app-development.png
       alt: Feature Image
     template: templates/hero/app-with-screenshot.html
     type: hero_app_with_screenshot
-    tag: Live Betting Games
+    tag: Specialized for Your Needs
     video:
       id: ""
     bglower:
       color: gray
       shade: "800"
-    description: |
-      > We Listen To The Players, The Operators , And Follow PAGCOR Guidelines.
+    description: "> Custom Built Software Development, Tailored to the specific
+      needs of a business "
     bgupper:
       color: gray
       shade: "50"
   - type: featured_centered_2x2
     template: templates/features/centered-2x2.html
-    header: Pitlords Live
-    tag: How We Are Different
-    description: "> Built From Ground Up , For the Players By the Players."
+    header: We Provide Solutions
+    tag: Benefits of Custom Software
+    description: "> Built From Ground Up"
     features:
-      - title: Real Time
-        description: Our Platform is 400 - 800 ms Latency   so Say Goodbye to System
-          Abusers of Delayed Uploaded Fights Our Sytem is Cheat Free.
-        image: /images/live.svg
-      - title: Bigger Prizes
-        image: /images/prize.svg
-        description: Each New Bet Place On Every Games The Pot Bonus Increases. The More
-          You Play The Change You Hit The Pot Bonus!
-      - title: Cashback Rewards
-        description: We Want You To Play More By Giving you More. Earn Additional Coins
-          Every Top Up you Make.
-        image: /images/poker-chip.svg
-      - title: Referral Bonus
-        description: Why Not We Pay You to Help Us Become Bigger by Helping Us Promote
-          Our Company.
-        image: /images/affiliate-marketing-2.svg
-      - title: P2P Encashment
-        description: Scan QR Code , Ask and Receive Money Direct From your Registered
-          E-wallet or Bank App.
-        image: /images/qr-code.svg
-      - title: Fast Cashout
-        description: "Receive Your Encashment Within 24-48 hrs After Withdrawal. No Hassle "
-        image: /images/p2p.svg
+      - title: Full Ownership
+        description: Client own 100% of their software, so you'll never pay subscription
+          or royalty fees. Want to add another feature or more users? No
+          problem; you have all the control.
+        image: /images/copyright-guidelines.svg
+      - title: Full Flexibility
+        description: With a custom-built solution, you can do whatever you want whenever
+          you want with your product. That means your software can grow and
+          change with your business, not the other way around.
+        image: /images/data.svg
+      - title: Competitive Advantages
+        description: Unlike "off-the-shelf" software, a custom-built solution can boost
+          your company's performance and be a valuable IP asset, two strong
+          competitive advantages.
+        image: /images/bestseller.svg
+      - title: Technology Independent
+        description: Goldcoders Corp is a technology-agnostic company. In other words,
+          we don't sell or promote specific technologies, so we're 100% focused
+          on our customers. We pick the right stack for your unique business
+          needs and goals.
+        image: /images/api.svg
   - type: team_short
     template: templates/teams/short.html
     title: Meet Our Team
@@ -107,14 +105,21 @@ sections:
           name: VP Marketing / Co-Founder
         description: Most of the important things in the world have been accomplished by
           people who have kept on trying when there seemed to be no hope at all.
-      - name: Cholo
+      - name: Arjay
         image:
           name: Team Member
-          url: https://scontent.fcrk1-3.fna.fbcdn.net/v/t1.6435-9/62148395_142203856949592_7902640082614484992_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeHch-U1CFcG9jjS0QNx5Vy8OHac3iTqxkM4dpzeJOrGQ6T0XCWYwtUaqo6c9TEhh5Bh40dST3jW34zfRhzPYSb-&_nc_ohc=H9RWPsGOP1gAX-BaO3N&_nc_ht=scontent.fcrk1-3.fna&oh=da2c266c85fc72f236036b0f15ed6bac&oe=60DFAC57
+          url: https://scontent.fcrk1-3.fna.fbcdn.net/v/t1.18169-9/1238078_688603507834394_1157321163_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=174925&_nc_eui2=AeGQu3bOhdG8OecH1-2qz6TQazkMxNKTs-ZrOQzE0pOz5lAB_kzZz_zrg5yIStCOP3WXx172xvZw6ZoN_QPhdhUc&_nc_ohc=Q2Fx9TbLankAX_omzRO&tn=wn2LXCvVRTEHAsIN&_nc_ht=scontent.fcrk1-3.fna&oh=8ecbd03cc532e577ac7d03bd6725470f&oe=60CC0251
         role:
-          name: COO / Co-Founder
+          name: Co-Founder
         description: "In the business world, everyone is paid in two coins: cash and
           experience. Take the experience first; the cash will come later."
+      - name: Bobby
+        image:
+          name: Team Member
+          url: https://scontent.fcrk1-1.fna.fbcdn.net/v/t1.6435-9/120042539_5054053771286685_662350970479016142_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGnYpyFf0m_GOQK0G2J5pmEVZYrEX1RXvlVlisRfVFe-YhD5ehPC63mymEoxjc_xyaEciChVxbaHUUXWkC-W3k8&_nc_ohc=H05gvLqSmgIAX-CudVN&_nc_ht=scontent.fcrk1-1.fna&oh=263c31a68e984d6712c76fc1cce1c789&oe=60CCD703
+        role:
+          name: Co-Founder
+        description: Live up to your potential instead of imitating someone else's.
   - bg:
       shade: "500"
       color: purple
