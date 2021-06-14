@@ -1,5 +1,5 @@
 ---
-featured_image: /images/Online Sabong.png
+featured_image: /images/app-development.png
 showsearch: false
 data: {}
 author:
