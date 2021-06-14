@@ -1,14 +1,13 @@
 ---
+description: Let build your Next Big Thing App A Reality, We Help You Bring
+  Ideas to Reality.
 featured_image: /images/app-development.png
+date: 2021-06-04T22:40:12.245Z
 showsearch: false
 data: {}
 author:
   name: Goldcoders
   avatar: https://avatars.dicebear.com/api/avataaars/richkid.svg
-title: Custom Software and Application Development
-description: Let build your Next Big Thing App A Reality, We Help You Bring
-  Ideas to Reality.
-date: 2021-06-04T22:40:12.245Z
 showcart: false
 sections:
   - logos:
@@ -123,7 +122,7 @@ sections:
       - name: Ishi
         image:
           name: Team Member
-          url: https://scontent.fcrk1-2.fna.fbcdn.net/v/t1.6435-9/104484021_1500558060116266_7560841671776670428_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeHtVvGC2ll8vE5pRj7BM4P6kHEuPaKSSw6QcS49opJLDhPyyslh-jjZGlWdRdp3Hu-ZlrkO1ESvdbmxxRIJfFxN&_nc_ohc=27ci3tv-ad8AX9d6u3P&_nc_ht=scontent.fcrk1-2.fna&oh=d34562406f97f6476cbc9c9ed9066624&oe=60CC0187
+          url: https://scontent.fcrk1-1.fna.fbcdn.net/v/t1.6435-9/84981007_1382500525255354_6939334898725421056_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeHyYhC_1_7l_9qSXtGdNfZlLKQ9b7ardLwspD1vtqt0vMACkbPTubnAvXSA8DQG75M2LewHPYQoMndOFVAUg2cV&_nc_ohc=pDYhjYjJE5IAX8mqZO9&tn=8bg6PEi_9Frv0Iat&_nc_ht=scontent.fcrk1-1.fna&oh=67a17892cc0e6f83e7d6e338da43fe0d&oe=60CB1045
         role:
           name: Brand Ambassadress
         description: I always find beauty in things that are odd and imperfect, they are
@@ -147,4 +146,5 @@ sections:
     description: An Opinionated E-Commerce Site For Filipino Online Seller. Built
       With Fastest Web Framework Hugo for Its Content Management System.
 index: true
+title: Custom Software and Application Development
 ---
