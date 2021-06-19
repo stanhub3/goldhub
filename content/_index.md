@@ -18,20 +18,20 @@ sections:
       col: 2
       images: []
     subheader: ""
-    header: Apps Built For Your Needs
+    header: Custom Software
     featured:
       url: /images/app-development.png
       alt: Feature Image
     template: templates/hero/app-with-screenshot.html
     type: hero_app_with_screenshot
-    tag: Specialized for Your Needs
+    tag: App Development
     video:
       id: ""
     bglower:
       color: gray
       shade: "800"
-    description: "> Custom Built Software Development, Tailored to the specific
-      needs of a business "
+    description: "> Lets build your App, Tailored to your needs, Without breaking
+      your budget."
     bgupper:
       color: gray
       shade: "50"
@@ -99,7 +99,7 @@ sections:
       - name: Echo
         image:
           name: VP Marketing
-          url: https://scontent.fcrk1-3.fna.fbcdn.net/v/t1.6435-9/133596030_1257607221275478_8475164670338986809_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=174925&_nc_eui2=AeE7R-gHC9yJvQ5MXuevcjHMfmYkMj-v6od-ZiQyP6_qh9Rfpa4IBuR05uMdHU2DAxi2t7XQ17xhhiYHokMgXVQq&_nc_ohc=JhN5a1mTt24AX_duRgV&_nc_ht=scontent.fcrk1-3.fna&oh=b529d64349b1bca475a650a8ed209c45&oe=60DFC75B
+          url: /images/echo.jpg
         role:
           name: VP Marketing / Co-Founder
         description: Most of the important things in the world have been accomplished by
@@ -107,7 +107,7 @@ sections:
       - name: Arjay
         image:
           name: Team Member
-          url: https://scontent.fcrk1-3.fna.fbcdn.net/v/t1.18169-9/1238078_688603507834394_1157321163_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=174925&_nc_eui2=AeGQu3bOhdG8OecH1-2qz6TQazkMxNKTs-ZrOQzE0pOz5lAB_kzZz_zrg5yIStCOP3WXx172xvZw6ZoN_QPhdhUc&_nc_ohc=Q2Fx9TbLankAX_omzRO&tn=wn2LXCvVRTEHAsIN&_nc_ht=scontent.fcrk1-3.fna&oh=8ecbd03cc532e577ac7d03bd6725470f&oe=60CC0251
+          url: /images/arjay.jpg
         role:
           name: Co-Founder
         description: "In the business world, everyone is paid in two coins: cash and
@@ -115,14 +115,14 @@ sections:
       - name: Bobby
         image:
           name: Team Member
-          url: https://scontent.fcrk1-1.fna.fbcdn.net/v/t1.6435-9/120042539_5054053771286685_662350970479016142_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGnYpyFf0m_GOQK0G2J5pmEVZYrEX1RXvlVlisRfVFe-YhD5ehPC63mymEoxjc_xyaEciChVxbaHUUXWkC-W3k8&_nc_ohc=H05gvLqSmgIAX-CudVN&_nc_ht=scontent.fcrk1-1.fna&oh=263c31a68e984d6712c76fc1cce1c789&oe=60CCD703
+          url: /images/bobby.jpg
         role:
           name: Co-Founder
         description: Live up to your potential instead of imitating someone else's.
       - name: Ishi
         image:
           name: Team Member
-          url: https://scontent.fcrk1-1.fna.fbcdn.net/v/t1.6435-9/84981007_1382500525255354_6939334898725421056_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeHyYhC_1_7l_9qSXtGdNfZlLKQ9b7ardLwspD1vtqt0vMACkbPTubnAvXSA8DQG75M2LewHPYQoMndOFVAUg2cV&_nc_ohc=pDYhjYjJE5IAX8mqZO9&tn=8bg6PEi_9Frv0Iat&_nc_ht=scontent.fcrk1-1.fna&oh=67a17892cc0e6f83e7d6e338da43fe0d&oe=60CB1045
+          url: /images/ishi.jpg
         role:
           name: Brand Ambassadress
         description: I always find beauty in things that are odd and imperfect, they are
@@ -142,7 +142,7 @@ sections:
     title: Thriftshop App
     template: templates/cta/brand-panel.html
     type: cta_brand_panel
-    image: https://scontent.fcrk1-3.fna.fbcdn.net/v/t1.6435-9/124845881_183404043380045_234399271978682581_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_eui2=AeGCK9msdlTJxtTBZc7aOhUYbcb7sqJ6mpJtxvuyonqaktXZla3qRoygLQImOvuFdVSO8TnFQVdQUGqhWhmeB5UY&_nc_ohc=dRjx8R8ZIyQAX8dmjAL&_nc_ht=scontent.fcrk1-3.fna&oh=300c81de86430d5da5e81a4f61f4b9fe&oe=60CB788E
+    image: /images/thriftshop-apps.jpg
     description: An Opinionated E-Commerce Site For Filipino Online Seller. Built
       With Fastest Web Framework Hugo for Its Content Management System.
 index: true
