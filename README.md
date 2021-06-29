@@ -3,7 +3,9 @@
 Official Website Repository of Pitlord INC.
 
 # 1 Click Deploy
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/goldcoders/site&stack=cms)
+
+[![1 Click Deploy](https://vercel.com/button)](https://app.netlify.com/start/deploy?repository=https://github.com/goldcoders/site&stack=cms)
+
 
 ## Requirements
 
