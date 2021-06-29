@@ -1,4 +1,4 @@
-# Pitlord INC. - Site
+# Goldcoders Corp - Official Site
 
 Official Website Repository of Pitlord INC.
 
