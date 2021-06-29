@@ -1,12 +1,12 @@
 enableEmoji = true
 enableRobotsTXT = true
-disqusShortname = "goldcoders"
-languageCode = "en-us"
-title = "Goldcoders Corp."
+title = "Goldcoders"
 baseURL = "https://goldcoders.dev"
 googleAnalytics = ""
-paginate = 9
+disqusShortname = "goldcoders"
+languageCode = "en-us"
 summaryLength = "10"
+paginate = 9
 
 [permalinks]
 blogs = "/blog/:slug/"
