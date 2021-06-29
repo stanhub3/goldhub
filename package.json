@@ -6,9 +6,9 @@
   "author": "Uriah Galang <ceo@goldcoders.dev>",
   "license": "MIT",
   "scripts": {
-    "tw-dev": "TAILWIND_MODE=watch NODE_ENV=development postcss ./assets/css/main.css -c ./assets/css/tailwind.config.js -o ./assets/css/tailwind.css -w",
+    "tw-dev": "cross-env TAILWIND_MODE=watch NODE_ENV=development postcss ./assets/css/main.css -c ./assets/css/tailwind.config.js -o ./assets/css/tailwind.css -w",
     "hugo-dev": "hugo server  --disableFastRender",
-    "tw-build": "TAILWIND_MODE=build NODE_ENV=production postcss ./assets/css/main.css -o ./assets/css/tailwind.css",
+    "tw-build": "cross-env TAILWIND_MODE=build NODE_ENV=production postcss ./assets/css/main.css -o ./assets/css/tailwind.css",
     "hugo-build": "hugo --gc --minify",
     "esbuild-js": "cross-env NODE_ENV=production node --require dotenv/config ./esbuild.js",
     "netlify-dev": "netlify dev",
