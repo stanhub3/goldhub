@@ -22,6 +22,7 @@
     "dev": "run-p tw-dev cms-dev local-server netlify-dev",
     "cms": "run-p hugo-dev tw-dev cms-dev local-server",
     "local": "run-p hugo-dev tw-dev cms-git local-server",
+    "live": "run-p hugo-dev tw-dev local-server",
     "build": "run-p tw-build hugo-build esbuild-js",
     "watch": "run-p tw-dev hugo-dev"
   },
