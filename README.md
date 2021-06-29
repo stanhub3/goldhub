@@ -2,6 +2,9 @@
 
 Official Website Repository of Pitlord INC.
 
+# 1 Click Deploy
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/goldcoders/site&stack=cms)
+
 ## Requirements
 
 -   [Hugo v0.83.1+extended](https://gohugo.io/getting-started/installing/)
