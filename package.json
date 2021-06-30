@@ -9,7 +9,7 @@
     "tw-dev": "cross-env TAILWIND_MODE=watch NODE_ENV=development postcss ./assets/css/main.css -c ./assets/css/tailwind.config.js -o ./assets/css/tailwind.css -w",
     "hugo-dev": "hugo server  --disableFastRender",
     "tw-build": "cross-env TAILWIND_MODE=build NODE_ENV=production postcss ./assets/css/main.css -o ./assets/css/tailwind.css",
-    "hugo-build": "cross-env hugo --gc --minify -b $HUGO_BASEURL",
+    "hugo-build": "hugo --gc --minify",
     "snowpack-build": "snowpack build --out public/admin",
     "esbuild-js": "cross-env NODE_ENV=production node --require dotenv/config ./esbuild.js",
     "netlify-dev": "netlify dev",
