@@ -1,6 +1,6 @@
 # Goldcoders Corp - Official Site
 
-Official Website Repository of Pitlord INC.
+Official Website Repository of `goldcoders.dev`.
 
 # 1 Click Deploy
 
@@ -33,16 +33,16 @@ Official Website Repository of Pitlord INC.
   - Message
 - Allow Collecting Emails
 
-### Getting Form URL 
+### Getting Form URL
 - Click Send Form Click and click via link
 - copy link open it in browser
 - inspect element
 - search for form action
-- copy the url in action 
+- copy the url in action
 
-### Adding Field Name 
+### Adding Field Name
 - Click on the right corner triple dot
 - It will show Get Prefilled Link , Click it
-- Inspect The Form Field 
+- Inspect The Form Field
 - Copy the name , it always start with entry.{ANY_NUMBER}
 - paste in on the form field name on contact page
