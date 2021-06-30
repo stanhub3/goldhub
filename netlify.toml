@@ -21,27 +21,21 @@ port = 3000
 
 [build.environment]
   # hugo env
-  HUGO_BASEURL = "https://pitlords.com"
-  HUGO_VERSION = "0.83.1"
+  HUGO_VERSION = "0.84.0"
   HUGO_ENABLEGITINFO = "true"
   SNOWPACK_PUBLIC_BACKEND_TYPE="git-gateway"
-  SNOWPACK_PUBLIC_BASEURL="$HUGO_BASEURL"
   SNOWPACK_PUBLIC_REPO="goldcoders/site"
   SNOWPACK_PUBLIC_BRANCH="main"
   SNOWPACK_PUBLIC_BACKEND="true"
   SNOWPACK_PUBLIC_SHOW_PREVIEW_LINKS="true"
   SNOWPACK_PUBLIC_MEDIA_FOLDER="static/images"
-  SNOWPACK_PUBLIC_SITE_URL="$HUGO_BASEURL"
-  SNOWPACK_PUBLIC_DOMAIN="goldcoders.dev"
-  SNOWPACK_PUBLIC_DISPLAY_URL="$HUGO_BASEURL"
   SNOWPACK_PUBLIC_LOGO_URL="/images/logo.svg"
   SNOWPACK_PUBLIC_PUBLIC_FOLDER="/images"
-   
 
 [context.production]
   # needed to be able to deploy in netlify using git hooks
   # set to theme if deploying via netlify-cli, if by git hooks retain the line below
-  # environment = { HUGO_THEME = "repo" }
+  environment = { HUGO_THEME = "repo", SNOWPACK_PUBLIC_BASEURL= "$HUGO_BASEURL", SNOWPACK_PUBLIC_SITE_URL = "$HUGO_BASEURL", SNOWPACK_PUBLIC_DOMAIN = "goldoders.dev" }
 
 [context.dev]
   # locally build using: ntl build --context=dev
