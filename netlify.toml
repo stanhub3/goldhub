@@ -17,17 +17,7 @@ port = 3000
 
 # Initial .env set at runtime, can be overriden , if deploy via cli
 [template.environment]
-  HUGO_BASEURL = "https://yourdomain.com"
-  # needed by our payment processor
-  PAYMONGO_EMAIL = "Paymongo Email"
-  PAYMONGO_PASS = "Paymongo Password"
-  PAYMONGO_LIVEMODE = "set to true on live site"
-  # needed by our purchase spreadsheet
-  GOOGLE_SPREADSHEET_ID_FROM_URL="Spreadsheet URL ID"
-  GOOGLE_SERVICE_ACCOUNT_EMAIL="Google Service Account Email"
-  GOOGLE_PRIVATE_KEY="Google Private Key"
-  # needed by netlify cms
-  LOGIN_LOGO_URL = "https://yourdomain.com/images/logo.svg"
+  HUGO_BASEURL = "Site Url: https://yourdomain.com"
 
 [build.environment]
   # hugo env
