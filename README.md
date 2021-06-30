@@ -2,6 +2,9 @@
 
 Official Website Repository of `goldcoders.dev`.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/17758869-2b98-4ae6-87f3-6206ac5d8578/deploy-status)](https://app.netlify.com/sites/goldcoders/deploys)
+
+
 # 1 Click Deploy
 
 [![1 Click Deploy](https://vercel.com/button)](https://app.netlify.com/start/deploy?repository=https://github.com/goldcoders/site&stack=cms)
