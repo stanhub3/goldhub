@@ -14,14 +14,12 @@ port = 3000
 
 	[plugins.inputs]
 	# If it should show more verbose logs (optional, default = true)
-	debug = true
+	debug = false
 
 # Initial .env set at runtime, can be overriden , if deploy via cli
 [template.environment]
   # ENV Variables can be used directly only on a command
-  HUGO_BASEURL = "Type Site URL eg: https://goldcoders.dev"
   SNOWPACK_PUBLIC_DOMAIN  = "Type Domain eg: goldcoders.dev"
-  SNOWPACK_PUBLIC_REPO = "Type Github Repo eg: username/repo"
 
 [build.environment]
   # hugo env
@@ -38,7 +36,7 @@ port = 3000
 [context.production]
   # needed to be able to deploy in netlify using git hooks
   # set to theme if deploying via netlify-cli, if by git hooks retain the line below
-  #environment = { SNOWPACK_PUBLIC_BASEURL= "SITE_URL", SNOWPACK_PUBLIC_SITE_URL = "SITE_URL", SNOWPACK_PUBLIC_DOMAIN = "goldcoders.dev" }
+  #environment = {  SNOWPACK_PUBLIC_DOMAIN = "goldcoders.dev" }
 
 [context.dev]
   # locally build using: ntl build --context=dev
