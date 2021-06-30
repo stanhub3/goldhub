@@ -17,7 +17,10 @@ port = 3000
 
 # Initial .env set at runtime, can be overriden , if deploy via cli
 [template.environment]
-  HUGO_BASEURL = "Site Url: https://yourdomain.com"
+  # ENV Variables can be used directly only on a command
+  HUGO_BASEURL = "Type Site URL eg: https://goldcoders.dev"
+  SNOWPACK_PUBLIC_DOMAIN  = "Type Domain eg: goldcoders.dev"
+  SNOWPACK_PUBLIC_REPO = "Type Github Repo eg: username/repo"
 
 [build.environment]
   # hugo env
