@@ -1,8 +1,8 @@
 {
-  "name": "pitlords",
+  "name": "goldcoders",
   "version": "1.0.0",
-  "description": "Pitlords Live Site",
-  "repository": "https://github.com/pitlords/site",
+  "description": "Goldcoders Official Site",
+  "repository": "https://github.com/goldcoders/site",
   "author": "Uriah Galang <ceo@goldcoders.dev>",
   "license": "MIT",
   "scripts": {
