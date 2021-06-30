@@ -24,6 +24,19 @@ port = 3000
   HUGO_BASEURL = "https://pitlords.com"
   HUGO_VERSION = "0.83.1"
   HUGO_ENABLEGITINFO = "true"
+  SNOWPACK_PUBLIC_BACKEND_TYPE="git-gateway"
+  SNOWPACK_PUBLIC_BASEURL="$HUGO_BASEURL"
+  SNOWPACK_PUBLIC_REPO="goldcoders/site"
+  SNOWPACK_PUBLIC_BRANCH="main"
+  SNOWPACK_PUBLIC_BACKEND=true
+  SNOWPACK_PUBLIC_SHOW_PREVIEW_LINKS=true
+  SNOWPACK_PUBLIC_MEDIA_FOLDER="static/images"
+  SNOWPACK_PUBLIC_SITE_URL="$HUGO_BASEURL"
+  SNOWPACK_PUBLIC_DOMAIN="goldcoders.dev"
+  SNOWPACK_PUBLIC_DISPLAY_URL="$HUGO_BASEURL"
+  SNOWPACK_PUBLIC_LOGO_URL="/images/logo.svg"
+  SNOWPACK_PUBLIC_PUBLIC_FOLDER="/images"
+   
 
 [context.production]
   # needed to be able to deploy in netlify using git hooks
