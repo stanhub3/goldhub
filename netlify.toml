@@ -1,7 +1,8 @@
 [build]
   publish = "public"
   functions = "functions"
-  command = "sed -i \"s|SITE_URL|${HUGO_BASEURL}|g\" netlify.toml && yarn prod"
+  # command = "sed -i \"s|SITE_URL|${HUGO_BASEURL}|g\" netlify.toml && yarn prod"
+  command = "yarn prod"
 # command: ntl dev
 [dev]
 command = "hugo server --disableFastRender"
@@ -37,7 +38,7 @@ port = 3000
 [context.production]
   # needed to be able to deploy in netlify using git hooks
   # set to theme if deploying via netlify-cli, if by git hooks retain the line below
-  environment = { SNOWPACK_PUBLIC_BASEURL= "SITE_URL", SNOWPACK_PUBLIC_SITE_URL = "SITE_URL", SNOWPACK_PUBLIC_DOMAIN = "goldcoders.dev" }
+  #environment = { SNOWPACK_PUBLIC_BASEURL= "SITE_URL", SNOWPACK_PUBLIC_SITE_URL = "SITE_URL", SNOWPACK_PUBLIC_DOMAIN = "goldcoders.dev" }
 
 [context.dev]
   # locally build using: ntl build --context=dev
