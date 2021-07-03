@@ -13,16 +13,16 @@ Official Website Repository of `goldcoders.dev`.
 ## Requirements
 
 -   [Hugo v0.83.1+extended](https://gohugo.io/getting-started/installing/)
--   [NodeJs v14.16.0](https://nodejs.org/en/download/)
+-   [NodeJs v14.16.0](https://nodejs.org/en/download/) or [FNM](https://github.com/Schniz/fnm)
 -   [Netlify CLI](https://cli.netlify.com)
--   [Parcel](https://parceljs.org/getting_started.html)
 
 ## Install CMS
 
--   [CMS](https://github.com/goldcoders/hugofy)
+-   [CMS](https://github.com/thriftapps/cms)
 
 
 ## Using Contact Page
+
 ### Recaptcha V2
 - [Create Recaptcha For Your Domain](https://www.google.com/recaptcha/admin/create) and copy Site Key
 
